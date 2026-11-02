@@ -4,7 +4,7 @@ Build a distinctive, premium bilingual automation website for Romanian commercia
 
 ## Start / resume
 1. Read [current state](docs/memory/STATE.md). Verify branch, HEAD and working changes; memory is not proof of current code.
-2. Read only the relevant sections of [build plan](docs/BUILD_PLAN.md). For user preferences or disputed choices, consult [decisions](docs/memory/DECISIONS.md).
+2. Read only the relevant sections of [build plan](docs/BUILD_PLAN.md). For technical work, load relevant sections of [architecture](docs/ARCHITECTURE.md). For user preferences or disputed choices, consult [decisions](docs/memory/DECISIONS.md).
 3. Read applicable subtree AGENTS.md before editing. If the tool does not load them automatically, read them explicitly. Local guidance refines this file; explicit current user instructions take precedence within platform constraints.
 4. For multi-agent work, load [coordination](docs/memory/WORKFLOW.md). Do not read every task or history file by default.
 

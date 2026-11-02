@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-02 — Technical architecture
+Selected Astro/React/TypeScript, CSS/SVG, pure simulation models, Decap CMS and Vitest/Playwright as the delegated engineering baseline. Added demo contracts, CMS authentication boundary, enquiry architecture and CI/performance targets. No app scaffold, services or runtime tests; identity gate preserved. Documentation links and consistency checked.
+
 ## 2026-11-02 — Project memory
 Added root/scoped AGENTS guidance, accepted-versus-proposed decisions, current-state roadmap and coordination protocol to planning/brand-and-website (PR #1).
 No implementation agents launched; no site deployed. Validation: documentation structure, references and consistency checks; no application tests applicable.

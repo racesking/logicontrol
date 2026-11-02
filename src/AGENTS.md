@@ -1,7 +1,7 @@
 # Website implementation
 Scope: src/ and descendants. This file does not imply an app already exists.
 Before foundation work, confirm identity selection in DECISIONS and architecture status in STATE.
-Read BUILD_PLAN sections 2, 3, 6 and 7 for the relevant feature.
+Read docs/ARCHITECTURE.md for the relevant layer and docs/specs/DEMOS.md for demo work. BUILD_PLAN sections 2 and 7 cover conversion and overall quality.
 
 - Use agreed tokens and shared contracts. Inspect actual scripts/configuration before selecting commands.
 - Keep content separate from rendering; validate schemas. Provide equivalent Romanian/English routes and preserve locale across navigation.

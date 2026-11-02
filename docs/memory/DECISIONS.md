@@ -22,16 +22,17 @@ Change a decision only with its source; preserve superseded decisions briefly wh
 | D14 | Token-efficient project memory requested | Small root guidance, scoped detail, compact state and task handoffs |
 
 ## Proposed — not owner-approved
-- Astro + TypeScript + React islands; validate at foundation stage.
 - Primary “Discută proiectul”; secondary demo CTA; keep enquiry independent of demo.
 - Signal / Control / Current as concept labels, not final visual choices.
 - Contractors as a secondary audience.
-- Git-backed or headless CMS after authoring/authentication/cost comparison.
 - GitHub Pages for prototype use, alternative production hosting subject to terms review.
 
 ## Unresolved
-No final domain, trademark clearance, logo, palette, font, stack, CMS, legal company details, contact endpoint or production host has been selected.
+No final domain, trademark clearance, logo, palette, font, external CMS authentication provider, legal company details, contact endpoint or production host has been selected.
 Do not turn prior assistant suggestions into facts.
 
 ## Technical basis
 Owner has robotics, embedded integration and DevOps/SRE experience. Use that combination to explain maintainability and integration; publish specific employers, certifications, projects or numerical achievements only after verification and permission.
+
+## Engineering baseline — delegated design, 2026-11-02
+Owner requested best-practice stack development with all three demos. Selected: Astro static + React/TypeScript islands, CSS/SVG, pure simulation reducers, Decap GitHub CMS, Vitest/Playwright. See [architecture](../ARCHITECTURE.md) for rationale and contracts. This is an engineering selection, not a claim the owner explicitly chose each package. Exact compatible versions are locked at scaffolding; services/accounts and runtime validation remain pending. XState/3D/global state libraries deferred until justified.

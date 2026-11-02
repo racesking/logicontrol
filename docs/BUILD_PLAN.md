@@ -37,21 +37,13 @@ Later, configurator selections can prefill this brief, with user review before s
 Track completed enquiries and qualified opportunities, not just demo clicks.
 Do not activate analytics or third-party submission until configured with appropriate privacy information.
 
-## 3. Proposed architecture
+## 3. Technical architecture
 
-Recommended for validation: Astro static pages + TypeScript + React islands for the demos; CSS custom properties for the selected design system. This supports fast content pages and richer client-side interactions without making the whole site an application.
+The selected engineering baseline is in [ARCHITECTURE](ARCHITECTURE.md); demo state and acceptance contracts are in [DEMOS](specs/DEMOS.md). Read only sections relevant to the assigned work.
 
-- Routes: /ro/ and /en/ with equivalent page links; root leads clearly to Romanian.
-- Structured, validated content collections for services and projects.
-- CMS requirement: first define content schemas; select a Git-backed or headless editor after checking authoring, authentication and cost. Markdown alone is an intermediate authoring method, not fulfilment of the requested CMS.
-- Static hosting cannot provide a server-side form handler or confidential CMS authentication. Put submission behind an adapter; later connect an approved hosted endpoint or serverless service. Never embed secrets in client code.
-- Build-time content and browser-only simulations initially. No actual BMS access.
-- Store base URL centrally; test /logicontrol/ and root deployments.
-- Pin dependencies and commit the lockfile when scaffolding; inspect current official documentation rather than assuming versions.
-- Avoid a WebGL-heavy homepage by default. Use SVG, CSS and lightweight interactions unless a prototype proves that 3D adds customer value.
-- No payments, customer portal or actual equipment control in scope.
+Astro static output + React/TypeScript islands; native CSS/SVG; pure deterministic simulation models; Decap GitHub CMS; Vitest/Playwright checks. External CMS authentication and real enquiry delivery require services outside GitHub Pages. Production hosting remains a separate decision.
 
-Hosting note: GitHub Pages documentation restricts running an online business and sites primarily facilitating commercial transactions. Treat it as a potential design/demo preview, not an assumed permanent commercial lead-generation host. Review current terms and recommend suitable production hosting before launch; do not deploy automatically.
+This baseline was developed under the owner's 2026-11-02 technical-stack request. It is not installed or runtime-validated. Identity exploration and owner selection still precede the full foundation build.
 
 ## 4. Agent orchestration
 
