@@ -1,6 +1,6 @@
 # Logicontrol: identity and website delivery plan
 
-Status: agreed business brief; proposed implementation architecture. Identity not selected.
+Status: detailed reference plan. For live progress read [STATE](memory/STATE.md); for authoritative owner choices read [DECISIONS](memory/DECISIONS.md). Load only sections relevant to your task.
 Repository: https://github.com/racesking/logicontrol
 Initial inspection: main contains README.md only. This document does not launch agents or deploy a site.
 
@@ -154,7 +154,7 @@ Configurator:
 Paste the following into the coordinator agent with this planning branch checked out:
 
 You are the coordinator for Logicontrol's brand and website project.
-Read docs/BUILD_PLAN.md and inspect the repository before making changes.
+Read AGENTS.md and docs/memory/STATE.md, then relevant sections of this plan. Follow docs/memory/WORKFLOW.md for assignments and handoffs. Inspect the repository before making changes.
 Execute Stage A only. Do not build the full website or choose the final identity.
 
 Prepare three comparable visual identity explorations: Signal (light), Control (dark), and Current (mixed).
