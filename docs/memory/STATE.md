@@ -29,6 +29,12 @@ Owner then selects/refines an identity. Do not skip this gate.
 Final identity; domain/name checks; exact-version compatibility validation; CMS authentication setup; production hosting; contact destination; approved project assets and founder bio. These do not block concept exploration.
 
 ## Active assignments
-None. Coordinator adds: ID | owner | branch | owned paths | status | dependency.
-Suggested IDs: A-STRATEGY, A-LIGHT, A-DARK, A-MIXED, A-REVIEW.
+Integration branch: cursor/stage-a-identity-concepts-1c84 (from planning/brand-and-website 07a26b4). Shared brief: docs/content/stage-a-brief.md.
+| ID | Owner | Owned paths | Status | Dependency |
+|---|---|---|---|---|
+| A-LIGHT | concept agent, isolated worktree | exploration/light/ | ready | assignment commit |
+| A-DARK | concept agent, isolated worktree | exploration/dark/ | ready | assignment commit |
+| A-MIXED | concept agent, isolated worktree | exploration/mixed/ | ready | assignment commit |
+| A-STRATEGY | coordinator | docs/research/ | active | none |
+| A-REVIEW | coordinator | exploration/index.html, tools/, screenshots/, docs/reviews/ | active | three concepts |
 Use [workflow](WORKFLOW.md) to claim work; stale branch snapshots do not coordinate agents automatically.
