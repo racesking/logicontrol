@@ -1,5 +1,5 @@
 # A-LIGHT — Signal identity concept
-Status: ready
+Status: review
 
 Objective: a reviewable light identity concept, “Signal”, at `exploration/light/`.
 Inputs: root AGENTS.md; exploration/AGENTS.md; [shared brief](../content/stage-a-brief.md); BUILD_PLAN §5A, §6 (dashboard), §7. Base: see STATE active assignments.
@@ -15,4 +15,8 @@ Acceptance:
 4. Romanian diacritics render from self-hosted fonts; licences recorded.
 5. Visibly labelled simulation, illustrative project and prototype form (never claims sending).
 
-Result: _pending_
+Result (branch `cursor/stage-a-light-signal-a257`, base 1828751; content through dcd906e):
+- Paths: `exploration/light/` — `index.html`, `identity.html`, `README.md`, `css/signal.css`, `js/demo.js`, `js/site.js`, `favicon.svg`, `logo/` (A and B in colour, reverse, mono black and mono white, plus the B mark), `fonts/` (6 woff2 files, ≈233 KB, and 2 OFL licences).
+- Checks: `node exploration/tools/check.mjs [--shots] light/index.html light/identity.html` gives "All checks passed" at 360/768/1440. That run had the coordinator's gallery temporarily present; without it the only failure is the `../index.html` 404. Screenshots were reviewed at every width and are not committed. A throwaway Node test of `transition()` passed, covering presets, precedence, advisories, the 5-entry log, no-ops, determinism and reset. A headless Chrome run passed for the 600 ms pending/confirm sequence, reduced motion (immediate), reset during pending, the RO/EN hero, two-step validation and the not-sent message, with the URL unchanged and no storage used.
+- Limitations: plan zones respond to pointer clicks only, and the SVG is `aria-hidden`; the HTML zone list is the keyboard and screen-reader path. Dimensions are illustrative and the copy is provisional.
+- Note for the coordinator: commit b4abcd5 (A-STRATEGY) swept up byte-identical copies of `exploration/light/fonts/*`, so this branch's fonts will merge cleanly.
