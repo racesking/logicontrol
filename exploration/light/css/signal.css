@@ -675,3 +675,12 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .devices svg { width: 100%; height: auto; max-width: 320px; margin-bottom: 16px; }
 .devices h3 { font-size: 1.25rem; font-weight: 750; font-stretch: 110%; margin-bottom: 6px; }
 .devices p { margin: 0; color: var(--ink-2); font-size: 0.9375rem; }
+@media (max-width: 599px) {
+  .contrast { min-width: 0; }
+  .contrast thead { display: none; }
+  .contrast tr { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; padding: 10px 12px; border-bottom: 1px solid var(--rule); }
+  .contrast td { border: 0; padding: 2px 0; }
+  .contrast td:nth-child(2) { text-align: right; }
+  .contrast td:nth-child(3) { color: var(--ink-2); font-size: 0.875rem; }
+  .contrast td:nth-child(4) { text-align: right; }
+}
