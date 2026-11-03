@@ -1,5 +1,5 @@
 # A-MIXED — Current identity concept
-Status: review
+Status: done. Integrated from the clean branch (7d27e5b) in commit 7c8cc05 (2026-11-03); the whole mixed/ tree was taken from that branch, replacing early copies swept into b4abcd5/1f14b56. The coordinator re-ran check.mjs (all pass) and the cross-concept demo/form test (14/14 pass).
 
 Objective: a reviewable mixed identity concept, “Current”, at `exploration/mixed/`.
 Inputs: root AGENTS.md; exploration/AGENTS.md; [shared brief](../content/stage-a-brief.md); BUILD_PLAN §5C, §6 (dashboard), §7. Base: see STATE active assignments.

@@ -23,6 +23,10 @@ Do not create speculative task files for the entire roadmap. A sample assignment
 - Rebase/merge deliberately; inspect conflicts and preserve both agents' intended behavior. Never overwrite unexpected edits or force-push to bypass concurrent work.
 - Commit useful work before worktree cleanup. Keep tasks marked review until integrated and checked.
 - Limit agent context to root guidance, current task, relevant plan sections and applicable subtree instructions.
+- Lesson, 2026-11-03.
+  - Symptom: two of three parallel agents worked in the coordinator's checkout, and one switched its branch. The coordinator's `git add -A` then swept their work-in-progress files into coordinator commits.
+  - Prevention: every worker prompt says to run `git worktree add <own path> -b <branch> <base>` before editing; the coordinator works in its own worktree; stage explicit paths, never `git add -A` in a shared checkout; integrate an agent's directory by taking its final tree.
+  - Evidence: commits b4abcd5 and 1f14b56; resolved in 7c8cc05.
 
 ## Completion and memory updates
 1. Worker records exact changed paths, commit/artifacts, checks and limitations in its task.

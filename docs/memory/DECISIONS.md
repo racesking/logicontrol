@@ -25,6 +25,8 @@ Change a decision only with its source; preserve superseded decisions briefly wh
 - Primary “Discută proiectul”; secondary demo CTA; keep enquiry independent of demo.
 - Signal / Control / Current as concept labels, not final visual choices.
 - Contractors as a secondary audience.
+- 2026-11-03, coordinator, Stage A: Signal identity as the base, with production demos on dark control-surface panels. This is a recommendation; the owner chooses. See docs/reviews/stage-a-identity-review.md.
+- 2026-11-03, coordinator, A-STRATEGY: two-step, context-first enquiry that asks for one contact method, with no “gratuit/ofertă” framing until commercial terms are decided. See docs/research/competitors-2026-11.md.
 - GitHub Pages for prototype use, alternative production hosting subject to terms review.
 
 ## Unresolved

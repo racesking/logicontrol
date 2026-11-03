@@ -1,5 +1,5 @@
 # A-LIGHT — Signal identity concept
-Status: review
+Status: done. Integrated in merge commit d774075 (2026-11-03). The coordinator re-ran check.mjs (all pass) and the cross-concept demo/form test (14/14 pass).
 
 Objective: a reviewable light identity concept, “Signal”, at `exploration/light/`.
 Inputs: root AGENTS.md; exploration/AGENTS.md; [shared brief](../content/stage-a-brief.md); BUILD_PLAN §5A, §6 (dashboard), §7. Base: see STATE active assignments.

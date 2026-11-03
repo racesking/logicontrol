@@ -1,5 +1,5 @@
 # A-DARK — Control identity concept
-Status: review
+Status: done. Integrated in merge commit 2fca802 (2026-11-03). The coordinator re-ran check.mjs (all pass) and the cross-concept demo/form test (14/14 pass).
 
 Objective: a reviewable dark identity concept, “Control”, at `exploration/dark/`.
 Inputs: root AGENTS.md; exploration/AGENTS.md; [shared brief](../content/stage-a-brief.md); BUILD_PLAN §5B, §6 (dashboard), §7. Base: see STATE active assignments.
