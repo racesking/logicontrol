@@ -32,9 +32,9 @@ Final identity; domain/name checks; exact-version compatibility validation; CMS 
 Integration branch: cursor/stage-a-identity-concepts-1c84 (from planning/brand-and-website 07a26b4). Shared brief: docs/content/stage-a-brief.md.
 | ID | Owner | Owned paths | Status | Dependency |
 |---|---|---|---|---|
-| A-LIGHT | concept agent, isolated worktree | exploration/light/ | ready | assignment commit |
-| A-DARK | concept agent, isolated worktree | exploration/dark/ | ready | assignment commit |
-| A-MIXED | concept agent, isolated worktree | exploration/mixed/ | ready | assignment commit |
-| A-STRATEGY | coordinator | docs/research/ | active | none |
+| A-LIGHT | concept agent, isolated worktree | exploration/light/ | active | base 1828751 |
+| A-DARK | concept agent, isolated worktree | exploration/dark/ | active | base 1828751 |
+| A-MIXED | concept agent, isolated worktree | exploration/mixed/ | active | base 1828751 |
+| A-STRATEGY | coordinator | docs/research/ | done | none |
 | A-REVIEW | coordinator | exploration/index.html, tools/, screenshots/, docs/reviews/ | active | three concepts |
 Use [workflow](WORKFLOW.md) to claim work; stale branch snapshots do not coordinate agents automatically.

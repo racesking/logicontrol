@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Logicontrol — Stage A identity concepts (review)</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --paper: #f4f3ef;
+      --card: #ffffff;
+      --ink: #16171a;
+      --muted: #55585f;
+      --line: #d7d5ce;
+      --focus: #1747d1;
+      --radius: 10px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+    .skip { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: #fff; padding: .6rem 1rem; z-index: 10; }
+    .skip:focus { top: 1rem; }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 3rem); }
+    header.top { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+    header.top .wrap { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: baseline; justify-content: space-between; }
+    .brand { font-weight: 700; letter-spacing: -.01em; }
+    .status { font-size: .875rem; color: var(--muted); }
+    .status strong { color: var(--ink); }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -.03em; margin: 3rem 0 1rem; max-width: 18ch; }
+    h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); letter-spacing: -.02em; margin: 0 0 1rem; }
+    h3 { margin: 0; font-size: 1.35rem; letter-spacing: -.01em; }
+    .lead { font-size: 1.125rem; max-width: 62ch; color: var(--muted); margin: 0 0 1rem; }
+    .shared { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 2rem 0 3rem; }
+    .shared div { border-top: 2px solid var(--ink); padding-top: .75rem; }
+    .shared dt { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .shared dd { margin: .25rem 0 0; font-weight: 600; }
+    section { padding: 2.5rem 0; }
+    .concepts { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+    .concept { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+    .shots { display: grid; grid-template-columns: 3fr 1fr; gap: 6px; background: #e7e5df; padding: 6px; }
+    .shots img { width: 100%; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 4px; background: #ddd; }
+    .concept .body { padding: 1.25rem 1.25rem 1.5rem; display: flex; flex-direction: column; gap: .9rem; flex: 1; }
+    .kicker { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .concept p { margin: 0; }
+    .logos { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+    .logos span { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 6px; padding: .6rem .8rem; min-height: 64px; }
+    .logos span.dark { background: #16171a; border-color: #16171a; }
+    .logos img { height: 36px; width: auto; max-width: 200px; display: block; }
+    .facts { font-size: .9rem; margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: .25rem .75rem; }
+    .facts dt { color: var(--muted); }
+    .facts dd { margin: 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: auto; }
+    .btn { display: inline-flex; align-items: center; min-height: 44px; padding: .55rem 1rem; border-radius: 999px; border: 1.5px solid var(--ink); text-decoration: none; font-weight: 600; }
+    .btn.primary { background: var(--ink); color: #fff; }
+    .btn:hover { background: #2d2f34; color: #fff; }
+    .sizes { font-size: .85rem; color: var(--muted); }
+    .sizes a { margin-right: .4rem; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
+    table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: .95rem; }
+    th, td { text-align: left; vertical-align: top; padding: .8rem 1rem; border-bottom: 1px solid var(--line); }
+    thead th { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    tbody th { width: 16%; }
+    tr:last-child > * { border-bottom: 0; }
+    .rec { background: var(--ink); color: #f4f3ef; border-radius: var(--radius); padding: clamp(1.25rem, 4vw, 2.5rem); }
+    .rec h2 { color: #fff; }
+    .rec p, .rec li { max-width: 72ch; }
+    .rec a { color: #fff; }
+    .rec :focus-visible { outline-color: #9fb6ff; }
+    .cols { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+    ol, ul { padding-left: 1.2rem; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em; background: #e7e5df; padding: .1em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+    footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; }
+    @media (prefers-reduced-motion: no-preference) { .btn { transition: background-color .15s, color .15s; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#concepts">Skip to concepts</a>
+  <header class="top">
+    <div class="wrap">
+      <span class="brand">Logicontrol · Stage A</span>
+      <span class="status"><strong>For owner review.</strong> No direction selected. Preview only, not indexed.</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Three identity concepts, one shared brief.</h1>
+      <p class="lead">Each concept uses the same Romanian copy, illustrative project card, prototype enquiry and simulated lighting demo, so the differences you see are design decisions, not content.</p>
+      <dl class="shared">
+        <div><dt>Hero (RO)</dt><dd lang="ro">Control clar pentru clădiri complexe.</dd></div>
+        <div><dt>Hero (EN)</dt><dd>Clear control for complex buildings.</dd></div>
+        <div><dt>CTAs</dt><dd lang="ro">Discută proiectul · Explorează demonstrația</dd></div>
+        <div><dt>Demo scenario</dt><dd>3 zones · occupancy · lighting mode · reset</dd></div>
+      </dl>
+    </div>
+
+    <section id="concepts" aria-labelledby="concepts-h">
+      <div class="wrap">
+        <h2 id="concepts-h">Concepts</h2>
+        <div class="concepts">
+          <!-- CONCEPT CARDS -->
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="compare-h">
+      <div class="wrap">
+        <h2 id="compare-h">Side-by-side</h2>
+        <!-- COMPARISON TABLE -->
+      </div>
+    </section>
+
+    <section aria-labelledby="rec-h">
+      <div class="wrap">
+        <div class="rec">
+          <h2 id="rec-h">Coordinator recommendation</h2>
+          <!-- RECOMMENDATION -->
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="how-h">
+      <div class="wrap cols">
+        <div>
+          <h2 id="how-h">What to try on each concept</h2>
+          <ol>
+            <li>Switch the hero to EN and back.</li>
+            <li>In the demo, select “Sală de ședințe”, set it to occupied, then try “Manual: pornit” on an empty zone to see the advisory. Press reset.</li>
+            <li>Open “Discută proiectul” and complete both steps: the prototype must say nothing was sent.</li>
+            <li>Use only the Tab, Enter, Space and arrow keys; focus should always be visible.</li>
+            <li>Open the identity sheet: logos, monochrome versions, palette contrast and font licences.</li>
+          </ol>
+        </div>
+        <div>
+          <h2>Strategy input</h2>
+          <p>Seven Romanian BMS integrator websites were reviewed on 3 November 2026. Most use a single “ofertă” form asking for name and phone up front; few ask for problem context. Recommendation: a two-step, context-first enquiry that asks for one contact method.</p>
+          <p><a href="https://github.com/racesking/logicontrol/blob/cursor/stage-a-identity-concepts-1c84/docs/research/competitors-2026-11.md">Read the competitor review (GitHub)</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Static preview: all links are relative and work under <code>/logicontrol/</code>. Run locally from the repository root with <code>python3 -m http.server 8000</code>, then open <code>http://localhost:8000/exploration/</code>. Project content is illustrative; demos are simulated; contact forms are prototypes that send nothing.</p>
+    </div>
+  </footer>
+</body>
+</html>
