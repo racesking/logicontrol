@@ -1,5 +1,5 @@
 # A-STRATEGY — Competitor review and enquiry flow
-Status: active
+Status: done
 
 Objective: a dated, source-backed comparison of 5–8 Romanian BMS/building-automation integrator websites and a recommended enquiry flow.
 Inputs: BUILD_PLAN §2; DECISIONS D02, D03, D12.
@@ -12,4 +12,4 @@ Acceptance:
 3. Enquiry flow recommendation with friction/trust tradeoff and measurable hypotheses; no invented benchmarks.
 4. Limitations recorded (e.g. pages not reachable, JS-only content).
 
-Result: _pending_
+Result: [competitors-2026-11.md](../research/competitors-2026-11.md). Seven company sites reviewed on 3 Nov 2026 from their own pages (static HTML plus a headless-Chrome render for JS forms). Facts table separated from interpretation and recommendation. Recommends a two-step, context-first enquiry asking for one contact method. Limitations: AVITECH form fields and EnergyPal evaluation flow not observable; no conversion data exists for any site. Next: owner reviews CTA wording and response-window commitment before Stage C copy.
