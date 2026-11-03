@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="t">
+  <title id="t">Logicontrol — simbol monocrom</title>
+  <defs><mask id="cut" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M34 17H27A10 10 0 0 0 17 27V47H37A10 10 0 0 0 47 37V30" fill="none" stroke="#000" stroke-width="7"/><circle cx="45" cy="19" r="4.75" fill="#000"/></mask></defs><rect x="2" y="2" width="60" height="60" rx="16" fill="#000000" mask="url(#cut)"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 92 60" role="img" aria-labelledby="t">
+  <title id="t">Logicontrol — opțiunea B, simbol</title>
+  <!-- Plan monogram: L wall, C wall; the C's open side is a doorway, its door swing drawn in signal colour. -->
+  <path fill="#161513" d="M0 0H10V46H34V56H0Z"/>
+  <path fill="#161513" d="M42 0H88V10H52V46H88V56H42Z"/>
+  <path fill="none" stroke="#F04A14" stroke-width="4.5" d="M88 12.2A33.8 33.8 0 0 0 54.2 46"/>
+</svg>
