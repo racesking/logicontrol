@@ -102,6 +102,8 @@ legend { padding: 0; }
   border-radius: 2px;
 }
 
+main:focus { outline: none; }
+
 .visually-hidden {
   position: absolute !important;
   width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
@@ -236,6 +238,9 @@ main { position: relative; display: block; }
   max-width: 13ch;
   text-wrap: balance;
 }
+@media (min-width: 901px) {
+  .hero h1 { font-variation-settings: "SOFT" 0, "opsz" 84; }
+}
 .hero h1 .lead-line {
   display: block;
   width: fit-content;
@@ -351,8 +356,17 @@ main { position: relative; display: block; }
 .demo-grid {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-areas: "plan console" "results console";
+  grid-template-rows: auto 1fr;
   gap: clamp(28px, 3.4vw, 56px);
   align-items: start;
+}
+.plan-figure { grid-area: plan; }
+.console { grid-area: console; }
+.results {
+  grid-area: results;
+  display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 20px 40px;
+  border-top: 1.5px solid var(--on-night-muted); padding-top: 22px;
 }
 
 .plan { width: 100%; height: auto; overflow: visible; }
@@ -393,7 +407,7 @@ main { position: relative; display: block; }
   padding: clamp(20px, 2.4vw, 32px);
 }
 .console h3 { font-family: var(--serif); font-weight: 420; font-size: 1.75rem; line-height: 1.1; }
-.console .label {
+.console .label, .results .label {
   font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-night-muted);
   margin-bottom: 8px; display: block;
 }
@@ -433,8 +447,8 @@ input[type="radio"]:checked { background: var(--accent); border-color: var(--acc
 }
 .advisory strong { color: var(--caution); }
 .summary {
-  font-family: var(--serif); font-size: 1.5rem; font-weight: 400; line-height: 1.2;
-  border-top: var(--rule); padding-top: 18px;
+  font-family: var(--serif); font-size: clamp(1.75rem, 2.6vw, 2.375rem); font-weight: 380; line-height: 1.1; letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 .log ol { display: grid; gap: 4px; font-size: 0.875rem; color: var(--on-night-muted); counter-reset: none; }
 .log li { display: grid; grid-template-columns: 4.2em 1fr; gap: 8px; }
@@ -521,7 +535,7 @@ input[type="radio"]:checked { background: var(--accent); border-color: var(--acc
   .site-nav { grid-column: 1 / -1; grid-row: 2; }
   .site-nav ul { justify-content: flex-start; }
   .lang { justify-self: end; }
-  .demo-grid { grid-template-columns: minmax(0, 1fr); }
+  .demo-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "plan" "console" "results"; grid-template-rows: auto; }
   .console { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
   .console > .span-all { grid-column: 1 / -1; }
 }
@@ -538,6 +552,7 @@ input[type="radio"]:checked { background: var(--accent); border-color: var(--acc
 }
 @media (max-width: 700px) {
   .console { grid-template-columns: minmax(0, 1fr); }
+  .results { grid-template-columns: minmax(0, 1fr); }
   .plan .z-meta { display: none; }
   .plan .z-name { font-size: 24px; }
   .plan .z-level { font-size: 46px; }
@@ -562,7 +577,7 @@ input[type="radio"]:checked { background: var(--accent); border-color: var(--acc
 /* ---------- Identity sheet ---------- */
 .id-hero { padding-top: clamp(48px, 7vw, 112px); padding-bottom: clamp(48px, 6vw, 96px); }
 .id-hero h1 {
-  font-family: var(--serif); font-weight: 370; font-size: clamp(3.5rem, 13vw, 12rem);
+  font-family: var(--serif); font-weight: 370; font-size: clamp(4.25rem, 13vw, 12rem);
   line-height: 0.95; letter-spacing: -0.035em; margin-bottom: clamp(24px, 4vw, 48px);
 }
 .id-hero h1 span { color: var(--current); }
@@ -605,9 +620,9 @@ input[type="radio"]:checked { background: var(--accent); border-color: var(--acc
 .small-test .night { background: var(--night); color: var(--on-night-muted); }
 .small-test img { width: auto; }
 
-.motif { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.motif { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px 48px; align-items: start; }
 .motif svg { width: 100%; height: auto; }
-.motif-rules { display: grid; gap: 10px; margin-top: 24px; max-width: 70ch; }
+.motif-rules { display: grid; gap: 12px; max-width: 70ch; }
 .motif-rules li { padding-left: 22px; position: relative; color: var(--fg-muted); }
 .motif-rules li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 12px; border-top: 3px solid var(--current); }
 

@@ -111,7 +111,7 @@
           </div>
 
           <div class="demo-grid" id="demo">
-            <figure>
+            <figure class="plan-figure">
               <svg class="plan" viewBox="0 0 610 462" aria-hidden="true" focusable="false">
                 <defs>
                   <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -208,14 +208,15 @@
               <p class="explain span-all" id="out-explain">Mod automat: prezență detectată → iluminat 70%.</p>
               <p class="advisory span-all" id="out-advisory" hidden></p>
 
-              <p class="summary span-all" id="out-summary" aria-live="polite">Zone iluminate: 2 din 3</p>
+              <button type="button" class="btn btn-ghost span-all" id="demo-reset">Resetează demonstrația</button>
+            </div>
 
-              <div class="log span-all">
-                <span class="label" id="log-label">Jurnal · ultimele 5 acțiuni</span>
+            <div class="results">
+              <p class="summary" id="out-summary" aria-live="polite">Zone iluminate: 2 din 3</p>
+              <div class="log">
+                <span class="label" id="log-label">Jurnal · ultimele 5 acțiuni, numerotate pe pași</span>
                 <ol id="out-log" aria-labelledby="log-label"><li class="empty">Nicio acțiune încă.</li></ol>
               </div>
-
-              <button type="button" class="btn btn-ghost span-all" id="demo-reset">Resetează demonstrația</button>
             </div>
           </div>
         </div>

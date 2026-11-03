@@ -82,7 +82,7 @@
       g.querySelector('.zone-fill').style.setProperty('--mix', zs.confirmed > 0 ? (40 + zs.confirmed * 0.6) + '%' : '0%');
       g.querySelector('[data-meta]').textContent = (zs.occupied ? 'Ocupat' : 'Liber') + ' · ' + D.MODE_LABEL[zs.mode].replace(' (prezență)', '');
       g.querySelector('[data-level]').textContent = zPending ? 'Se aplică…' : level(zs.confirmed);
-      g.querySelector('[data-flag]').hidden = !adv;
+      g.querySelector('[data-flag]').toggleAttribute('hidden', !adv);
       root.querySelector('[data-tap="' + d.id + '"]').classList.toggle('is-live', zs.confirmed > 0);
 
       var btn = root.querySelector('[data-select="' + d.id + '"]');

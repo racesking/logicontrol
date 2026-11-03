@@ -81,7 +81,7 @@
     var lead = hero.querySelector('.lead-line');
     var lb = box(lead);
     var fs = parseFloat(getComputedStyle(lead).fontSize);
-    var uy = lb.y + fs * 1.0;
+    var uy = lb.y + fs * 0.97;
     var services = box(document.getElementById('servicii'));
     var turnY = services.y + services.h - Math.min(72, services.h * 0.05);
     var feed = box(document.getElementById('plan-feed'));
