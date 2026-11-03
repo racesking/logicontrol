@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-03 — Air, heat, and the dark page
+Owner chose dark Control, Logo B, homes and automation projects, and an air-and-energy proposition. CMS deferred. Organic-reach research replaced the BMS hero and the lighting demo with a winter-morning air-and-heat preview in Romanian and English. No savings, health, certificate or funding claims.
+
 ## 2026-11-02 — Technical architecture
 Selected Astro/React/TypeScript, CSS/SVG, pure simulation models, Decap CMS and Vitest/Playwright as the delegated engineering baseline. Added demo contracts, CMS authentication boundary, enquiry architecture and CI/performance targets. No app scaffold, services or runtime tests; identity gate preserved. Documentation links and consistency checked.
 

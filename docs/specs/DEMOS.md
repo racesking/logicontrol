@@ -1,6 +1,33 @@
 # Interactive demo contracts
 Load when implementing models, demos, configurator handoff or their tests.
-Status: implementation specification, not working code. UI styling follows the owner's selected identity.
+
+## Current contract — air and heat, 2026-11-03
+Status: the flagship model. The office lighting dashboard, the stuck-valve diagnosis and the systems configurator below are superseded as the product proof. Do not implement them unless a later decision says they serve this outcome.
+
+One deterministic scenario: a bedroom on a winter morning, one person, starting from a window shut all night.
+
+| Choice | Air | Illustrative CO₂ | Heat picture |
+|---|---|---|---|
+| Window shut | Heavy. Moisture stays in. | 1800 ppm | Heat stays in the room |
+| Window tilted | Fresher. | 700 ppm | Much of the heat leaves |
+| Fresh air with heat recovery | Fresher. Principle only, not a sized product. | 850 ppm | Most of the heat stays |
+
+Rules:
+- `transition(state, action)` is pure. Actions are `SET_WAY` and `RESET`. The same start plus the same actions always return the same state.
+- Copy lives outside the model. The model returns the way id and the fixed numbers.
+- The interface says “Demonstrație simulată” / “Simulated demonstration”.
+- The heat scale is a teaching picture. It is not a bill reduction, a payback, or a promise.
+- CO₂ figures are round illustrations. They do not certify the air and they are not a health result.
+- Heat recovery is a principle. It is not a product recommendation, a price, or a claim that air conditioning is the same thing as ventilation.
+- Reset returns the shut-window start and clears the log.
+- Do not persist contact details. Do not imply the form was sent.
+
+Acceptance: shut, tilted and recovery each show a different air word and heat picture; choosing the current way does not add a step; reset restores the start; both languages describe the same facts.
+
+## Superseded specification
+The sections below were the commercial lighting, diagnosis and configurator contracts. Kept so the tradeoff stays visible. They are not the build.
+
+Status of the old text: implementation specification, not working code. UI styling follows the owner's selected identity.
 
 ## Common model boundary
 Use serialisable readonly TypeScript domain values; no DOM, React hooks, fetch, wall-clock reads or random values in the engine.

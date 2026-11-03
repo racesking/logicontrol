@@ -7,24 +7,22 @@ Initial inspection: main contains README.md only. This document does not launch 
 ## 1. Agreed brief
 
 - Working brand: Logicontrol. Domain/trademark clearance remains unresolved; do not claim it is cleared.
-- Market: commercial building owners and managers across Romania. Contractors are a secondary audience.
-- Services: BMS troubleshooting, integration, monitoring, maintenance, assessments, consulting, programming and commissioning. Do not imply full electrical installation capability or certifications without confirmation.
+- Market, revised 2026-11-03: people in homes, and people planning an automation project, across Romania. Commercial buildings remain a service line, not the lead. See D16.
+- Offer: solve the problems those people already feel — heavy or stale indoor air, condensation, and heat lost while airing — with automation that serves that outcome. Do not lead with BMS jargon or lighting control. Do not imply an energy audit, an energy certificate, a funding application, a health result, or a savings percentage.
 - Company-led presentation, personal founder About section.
 - Romanian and English at launch; Romanian is the primary language.
-- Premium, technologically advanced, bold identity. Compare genuinely different light, dark and mixed visual directions.
-- Explore identity first. The owner selects a direction before full website implementation.
+- Identity, selected 2026-11-03: dark Control system, Logo B. Signal is not the site. See D15.
+- Explore the revised page before the production scaffold. The owner reviews that page before full website implementation.
 - Real project photographs and details will be supplied. Do not invent projects, clients, testimonials, metrics, certifications, staff or contact details.
-- Final website: editable content and three interactive experiences: building dashboard, fault diagnosis and building configurator.
+- Final website: bilingual pages about the air-and-energy outcome, one deterministic demonstration of that tradeoff, and an enquiry that works without the demonstration. A content editor is deferred (D18). The old three demos are not the build.
 - Quality first, staged launch; no fixed deadline.
 - Initially requested hosting: GitHub Pages. Keep portable static output and /logicontrol/ base-path support. Check suitability before commercial launch.
 
 ## 2. Positioning and conversion hypothesis
 
-Make the service understandable: investigate unreliable building controls, connect systems, and maintain them with clear documentation.
+Make the outcome understandable: fresher air in a home without throwing the heat out of the window. Organic-reach research on 2026-11-03 is in [docs/research/organic-reach-2026-11.md](research/organic-reach-2026-11.md). Household words lead. Trade words wait.
 
-Proposed primary CTA: “Discută proiectul” / “Discuss your project”.
-Secondary CTA: “Explorează demonstrația” / “Explore the demo”.
-The primary enquiry path must remain available without completing any demo.
+Hypothesis, not a tested winner: primary “Descrieți ce se întâmplă în casă” / “Describe what is happening at home”. Secondary: see the air and the heat. The enquiry path stays available without completing the demonstration.
 
 This is a hypothesis, not a proven highest-converting approach. Before final copy, the strategy agent should compare 5–8 relevant Romanian integrator sites, record dated primary-source URLs, assess their enquiry flows, and explain the chosen friction/trust tradeoff. No invented conversion benchmarks.
 
@@ -105,8 +103,9 @@ Avoid stock lightning-bolt-in-a-house symbols, copied competitor logos, random c
 
 ## 6. Demo specifications
 
-All experiences must say “Demonstrație simulată” / “Simulated demonstration” in the interface.
-Use deterministic, resettable state. Any consumption figures are illustrative, not savings promises.
+Current contract: [specs/DEMOS.md](specs/DEMOS.md). The flagship is a winter-morning bedroom: shut window, tilted window, or heat-recovery principle. Air and heat are shown together. Figures are illustrative. No savings percentage.
+
+The list below is the superseded commercial-demo brief. Do not build it as the product proof.
 
 Dashboard:
 - A small commercial-building floor plan with zones.

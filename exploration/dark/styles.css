@@ -537,3 +537,51 @@ table.contrast .ex-edge { width: 3rem; height: 1.6rem; background: var(--bg-1); 
 .spec-meta div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--line); font-size: 0.875rem; }
 .spec-meta dt { padding-top: 0.1rem; }
 .spec-meta dd { margin: 0; font-family: var(--mono); color: var(--text-2); }
+
+/* Air and heat demonstration */
+.problem-grid, .card-grid { display: grid; gap: 0.75rem; }
+.problem-card, .story-card {
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-1);
+  min-width: 0;
+}
+.problem-card h3, .story-card h3 { font-size: 1.25rem; margin-bottom: 0.6rem; }
+.problem-card p, .story-card p { margin: 0; color: var(--text-2); }
+.story-card .label { display: block; margin-bottom: 0.75rem; }
+.readout-grid { display: grid; gap: 0.75rem; }
+.readout {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-0);
+  min-width: 0;
+}
+.readout dt { margin: 0; }
+.readout dd { margin: 0.35rem 0 0; font-size: 1.75rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; }
+.readout .unit { display: block; margin-top: 0.35rem; color: var(--text-3); font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.heat {
+  width: 100%; height: 0.55rem; margin-top: 0.85rem; border: 0; border-radius: 4px;
+  appearance: none; -webkit-appearance: none; background: var(--bg-3); color: var(--lamp);
+}
+.heat::-webkit-progress-bar { background: var(--bg-3); border-radius: 4px; }
+.heat::-webkit-progress-value { background: var(--lamp); border-radius: 4px; }
+.heat::-moz-progress-bar { background: var(--lamp); border-radius: 4px; }
+.explain { margin: 0; color: var(--text); }
+.air-options { grid-template-columns: minmax(0, 1fr); }
+.log { margin: 0.4rem 0 0; padding-left: 1.15rem; color: var(--text-2); }
+.log:empty { display: none; }
+.faq { display: grid; gap: 0.5rem; }
+.faq details {
+  border: 1px solid var(--line); border-radius: 8px; background: var(--bg-1); padding: 0.85rem 1rem;
+}
+.faq summary { cursor: pointer; font-weight: 500; }
+.faq details p { margin: 0.7rem 0 0; color: var(--text-2); }
+.limit {
+  margin: 0; padding: 0.9rem 1rem; border-left: 3px solid var(--lamp);
+  background: var(--bg-2); color: var(--text-2);
+}
+@media (min-width: 800px) {
+  .problem-grid, .card-grid, .readout-grid { grid-template-columns: 1fr 1fr; }
+}
