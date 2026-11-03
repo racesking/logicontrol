@@ -97,7 +97,7 @@
       var valueEl = g.querySelector('[data-value]');
       var pendingEl = g.querySelector('[data-pending]');
       valueEl.textContent = zs.feedback > 0 ? pct(zs.feedback) : 'Oprit';
-      pendingEl.textContent = pending ? '→ ' + pct(D.command(state, z.id)) + ' · se aplică…' : '';
+      pendingEl.textContent = pending ? '→ ' + pct(D.command(state, z.id)) : '';
       pendingEl.setAttribute('x', String(Number(valueEl.getAttribute('x')) + valueEl.textContent.length * 18 + 12));
     });
   }

@@ -241,7 +241,7 @@ button { cursor: pointer; }
 .plan .plan-name { fill: var(--text); font-family: var(--sans); font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
 .plan .plan-value { fill: var(--text); font-family: var(--mono); font-size: 30px; font-weight: 500; font-variant-numeric: tabular-nums; }
 .plan .plan-meta { fill: var(--text-2); font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
-.plan .plan-pending { fill: var(--lamp); font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+.plan .plan-pending { fill: var(--lamp); font-family: var(--mono); font-size: 18px; font-weight: 500; font-variant-numeric: tabular-nums; }
 .plan .plan-core { fill: var(--text-3); font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
 .plan--interactive .zone { cursor: pointer; }
 .plan--interactive .zone:hover .zone-hit { fill: rgba(236, 230, 220, 0.035); }
@@ -302,7 +302,8 @@ button { cursor: pointer; }
 .zone-btn:hover { background: var(--bg-2); border-color: var(--edge); }
 .zone-btn[aria-pressed='true'] { border-color: var(--lamp); background: var(--bg-2); box-shadow: inset 0 0 0 1px var(--lamp); }
 .zone-btn .zb-name { font-weight: 500; font-size: 0.9375rem; line-height: 1.3; }
-.zone-btn .zb-state { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 0 0.75rem; margin-top: 0.15rem; font-family: var(--mono); font-size: 0.75rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.zone-btn .zb-state { display: grid; grid-template-columns: repeat(2, minmax(0, 6.5rem)); gap: 0 0.75rem; margin-top: 0.15rem; font-family: var(--mono); font-size: 0.75rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.zone-btn .zb-state span { display: grid; }
 .zone-btn .zb-state b { font-weight: 500; color: var(--text); }
 .zone-btn .zb-sel { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lamp); }
 .zone-btn[aria-pressed='false'] .zb-sel { visibility: hidden; }
