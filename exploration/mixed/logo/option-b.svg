@@ -2,7 +2,7 @@
   <title id="t">Logicontrol</title>
   <!-- Logicontrol, option B. Symbol: one continuous stroke, C above (round) and L below (square).
        Wordmark: Schibsted Grotesk (wght 620), outlined. -->
-  <path d="M40 8 H28 A20 20 0 0 0 8 28 V40 H40" fill="none" stroke="#2A36E8" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="miter"/>
+  <path d="M34 7 H27 A19 19 0 0 0 8 26 V41 H42" fill="none" stroke="#2A36E8" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="miter"/>
   <g fill="#17142B">
     <path transform="translate(62 35.95)" d="M2.47 0.00L2.47 -23.91L6.94 -23.91L6.94 -3.76L18.59 -3.76L18.59 0.00L2.47 0.00Z"/><!-- L -->
     <path transform="translate(62 35.95)" d="M28.22 0.42Q25.57 0.42 23.54 -0.77Q21.52 -1.96 20.39 -4.08Q19.25 -6.19 19.25 -8.97Q19.25 -11.74 20.39 -13.86Q21.52 -15.97 23.54 -17.16Q25.57 -18.35 28.22 -18.35Q30.87 -18.35 32.90 -17.16Q34.92 -15.97 36.06 -13.86Q37.19 -11.75 37.19 -8.97Q37.19 -6.19 36.06 -4.07Q34.92 -1.96 32.89 -0.77Q30.87 0.42 28.22 0.42ZM28.22 -2.81Q30.29 -2.81 31.48 -4.47Q32.67 -6.12 32.67 -8.96Q32.67 -11.82 31.48 -13.47Q30.29 -15.12 28.22 -15.12Q26.16 -15.12 24.97 -13.47Q23.77 -11.82 23.77 -8.96Q23.77 -6.12 24.97 -4.46Q26.16 -2.81 28.22 -2.81Z"/><!-- o -->
