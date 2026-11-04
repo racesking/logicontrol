@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 10 445.84 96" width="445.84" height="96" role="img" aria-labelledby="t">
+  <title id="t">logicontrol — opțiunea A, monocrom alb</title>
+  <!-- Monoline construction: stroke 10, x-height 48, ascender 68, descender 24. Edit stroke-width to change weight. -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M5 12V80"/>
+    <path d="M23 56a19 19 0 1 0 38 0a19 19 0 1 0 -38 0"/>
+    <path d="M79 56a19 19 0 1 0 38 0a19 19 0 1 0 -38 0"/>
+    <path d="M117 32V82A17.5 17.5 0 0 1 84.34 90.75"/>
+    <path d="M137 32V80"/>
+    <path d="M188.12 68.71A19 19 0 1 1 188.12 43.29"/>
+    <path d="M202.84 56a19 19 0 1 0 38 0a19 19 0 1 0 -38 0"/>
+    <path d="M259.84 32V80"/>
+    <path d="M259.84 56A19 19 0 0 1 297.84 56V80"/>
+    <path d="M320.84 18V80"/>
+    <path d="M310.84 36.5H336.84"/>
+    <path d="M346.84 32V80"/>
+    <path d="M346.84 56A19 19 0 0 1 365.84 37H369.84"/>
+    <path d="M380.84 56a19 19 0 1 0 38 0a19 19 0 1 0 -38 0"/>
+    <path d="M437.84 12V80"/>
+  </g>
+  <!-- Indicator: the dot of the i sits on ascender height, like a lamp at setpoint. -->
+  <rect x="130.5" y="12" width="13" height="13" rx="3" fill="#FFFFFF"/>
+</svg>

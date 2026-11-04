@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Discuție — Logicontrol</title>
+  <meta name="description" content="Logicontrol construiește BMS și automatizări, hardware și software, ca o persoană să poată urmări și conduce sisteme adevărate.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0F1113">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/geist-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="site-home">
+  <a class="skip-link" href="#continut">Sari la conținut</a>
+  <div class="preview-bar">
+    <div class="wrap">
+      <span>Previzualizare neindexată · Logo B</span>
+      <nav aria-label="Previzualizare"><a href="identity.html">Fișa de identitate</a></nav>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Logicontrol — pagina principală">
+        <img src="logo/option-b.svg" alt="Logicontrol" width="260" height="64">
+      </a>
+      <nav class="primary-nav" id="primary-nav" aria-label="Principală">
+        <ul class="nav-list"><li><a href="practici.html#bms" data-nav="bms">BMS</a></li><li><a href="practici.html#hvac" data-nav="hvac">HVAC</a></li><li><a href="practici.html#software" data-nav="software">Software</a></li><li><a href="lucrari.html" data-nav="lucrari.html">Lucrări</a></li><li><a href="discutie.html" data-nav="discutie.html" aria-current="page">Discuție</a></li></ul>
+      </nav>
+      <a class="btn btn--primary header-cta" href="discutie.html">Deschide o discuție</a>
+      <button class="btn btn--quiet menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Meniu</button>
+    </div>
+  </header>
+  <main id="continut" tabindex="-1">
+
+    <section class="page-intro">
+      <div class="wrap">
+        <p class="section-index label">04 · Discuție</p>
+        <h1>Ce vrei să vezi și să comanzi?</h1>
+        <p class="section-lead">Alege de unde pornești. Întrebarea de după se schimbă. Formularul nu trimite încă.</p>
+      </div>
+    </section>
+    <section class="section" style="padding-top:0">
+      <div class="wrap" style="max-width:42rem">
+        <form class="panel form-panel" id="enquiry" method="post" action="#" novalidate>
+          <div class="form-body">
+            <div class="starts" role="group" aria-label="De unde pornești">
+              <button type="button" data-start="house">O casă cu echipament deja montat</button>
+              <button type="button" data-start="building">O clădire care are nevoie de BMS</button>
+              <button type="button" data-start="paper">Un proiect încă pe hârtie</button>
+            </div>
+            <p class="field-error" id="start-error"></p>
+            <input type="hidden" name="start" id="start-value">
+            <fieldset id="start-house" hidden>
+              <legend>Ce este deja montat</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="already" value="boiler"><span>Centrală</span></label>
+                <label class="option"><input type="radio" name="already" value="vent"><span>Ventilație</span></label>
+                <label class="option"><input type="radio" name="already" value="both"><span>Ambele</span></label>
+                <label class="option"><input type="radio" name="already" value="unsure"><span>Nu sunt sigur</span></label>
+              </div>
+            </fieldset>
+            <fieldset id="start-building" hidden>
+              <legend>Ce trebuie legat</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="link" value="heat"><span>Încălzire</span></label>
+                <label class="option"><input type="radio" name="link" value="air"><span>Ventilație</span></label>
+                <label class="option"><input type="radio" name="link" value="panels"><span>Tablouri</span></label>
+                <label class="option"><input type="radio" name="link" value="all"><span>Întregul BMS</span></label>
+              </div>
+            </fieldset>
+            <fieldset id="start-paper" hidden>
+              <legend>Ce se desenează acum</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="draw" value="heat"><span>Încălzirea</span></label>
+                <label class="option"><input type="radio" name="draw" value="air"><span>Ventilația</span></label>
+                <label class="option"><input type="radio" name="draw" value="whole"><span>Întregul sistem</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Procesul</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="problem" value="heat" required><span>Încălzire sau răcire</span></label>
+                <label class="option"><input type="radio" name="problem" value="air"><span>Ventilație</span></label>
+                <label class="option"><input type="radio" name="problem" value="bms"><span>Un BMS de legat cap la cap</span></label>
+                <label class="option"><input type="radio" name="problem" value="process"><span>Alt proces de urmărit</span></label>
+              </div>
+              <p class="field-error"></p>
+            </fieldset>
+            <fieldset>
+              <legend>Locul</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="place" value="home" required><span>Casă</span></label>
+                <label class="option"><input type="radio" name="place" value="apartment"><span>Apartament</span></label>
+                <label class="option"><input type="radio" name="place" value="building"><span>Clădire</span></label>
+              </div>
+              <p class="field-error"></p>
+            </fieldset>
+            <div>
+              <label class="field-label" for="person">Nume</label>
+              <input class="text-input" id="person" name="person" type="text" autocomplete="name" required>
+              <p class="field-error"></p>
+            </div>
+            <div>
+              <label class="field-label" for="contact-detail">Email sau telefon</label>
+              <input class="text-input" id="contact-detail" name="contact" type="text" autocomplete="email" required>
+              <p class="field-error"></p>
+            </div>
+            <div>
+              <label class="field-label" for="note">Ce nu vezi azi <span class="opt">(opțional)</span></label>
+              <textarea class="text-input" id="note" name="note"></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn--primary" type="submit">Arată rezumatul</button>
+            </div>
+            <p class="form-result" id="form-result" hidden></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <img src="logo/option-b-symbol.svg" alt="" width="48" height="48">
+        <span>Logicontrol · BMS și automatizări · România</span>
+      </div>
+      <a href="identity.html">Fișa de identitate</a>
+      <span class="photo-credit">Fotografii: Immo Wegmann, Dean Brierley, Unsplash.</span>
+    </div>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>
