@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-04 — Sharper panel, room and dashboard
+The distribution board is a row of modular breakers with a live ammeter. The room is a furnished isometric cutaway. Each dashboard card shows the current that circuit is drawing.
+
 ## 2026-11-04 — Room, panel, dashboard
 The playable preview is now an isometric room fed by a rendered distribution board: lights, underfloor heating, heat recovery, AC, blinds, a PIR and a live current. Commands and breakers are separate.
 
