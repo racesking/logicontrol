@@ -163,6 +163,28 @@
     window.addEventListener('pagehide', function () { if (timer) clearInterval(timer); });
   }
 
+  var path = document.querySelector('.path');
+  if (path) {
+    var steps = $$('.path > li');
+    function showStep(index) {
+      steps.forEach(function (li, n) {
+        li.classList.toggle('is-current', n === index);
+        li.setAttribute('aria-current', n === index ? 'step' : 'false');
+      });
+    }
+    steps.forEach(function (li, index) {
+      li.tabIndex = 0;
+      li.addEventListener('click', function () { showStep(index); });
+      li.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          showStep(index);
+        }
+      });
+    });
+    showStep(0);
+  }
+
   var form = $('#enquiry');
   if (!form) return;
   var result = $('#form-result');

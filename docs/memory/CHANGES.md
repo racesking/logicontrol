@@ -1,3 +1,6 @@
+## 2026-11-04 — A site, not one page
+Material 3 is reverted. The dark Control type and color return. Home, practices, the four-step path, jobs and the enquiry are separate pages. Moving between them uses a view transition. On the path, the chosen step stays lit.
+
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
