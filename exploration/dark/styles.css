@@ -593,6 +593,50 @@ table.contrast .ex-edge { width: 3rem; height: 1.6rem; background: var(--bg-1); 
 .band-electrical { background-image: url('photos/electrical.jpg'); background-position: center 30%; }
 .band-cables { background-image: url('photos/servers.jpg'); background-position: center; }
 .photo-credit { color: var(--text-3); font-size: 0.75rem; }
+.frame {
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  background-color: #0f1113;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,17,19,.15) 20%, rgba(15,17,19,.82));
+}
+.frame .wrap { position: relative; z-index: 1; }
+.frame h2 { font-size: clamp(2.6rem, 1.4rem + 3.4vw, 4.6rem); max-width: 16ch; }
+.practice-grid, .path, .work-rows { display: grid; gap: 0.75rem; }
+.practice, .path li, .work-rows section {
+  padding: 1.35rem 1.3rem 1.45rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(21, 24, 27, 0.88);
+  min-width: 0;
+}
+.practice h3, .path h3, .work-rows h3 { font-size: clamp(1.6rem, 1.2rem + 1vw, 2.1rem); margin-bottom: 0.55rem; }
+.practice p, .path p, .empty-job { margin: 0; color: var(--text-2); }
+.practice ul { margin: 1rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.45rem; }
+.practice li { padding-top: 0.45rem; border-top: 1px solid var(--line); color: var(--text); }
+.path { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.path li span {
+  display: block;
+  font-family: var(--mono);
+  color: var(--lamp);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.7rem;
+}
+.empty-job { margin-top: 0.4rem; }
+@media (min-width: 900px) {
+  .practice-grid, .path { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .path { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .work-rows { grid-template-columns: 1fr 1fr; }
+}
 .hero-mark { height: clamp(4.75rem, 10vw, 7.5rem); width: auto; margin-bottom: 1.75rem; }
 .hero-command h1 { font-size: clamp(3.4rem, 2rem + 6.4vw, 7.25rem); letter-spacing: -0.045em; max-width: 16ch; }
 .hero-command .hero-lead { max-width: 40rem; font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem); }
