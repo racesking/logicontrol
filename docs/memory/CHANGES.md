@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-04 — Engineering photographs
+The demo is off the page for now. Real plant, duct and wiring photographs sit behind the Romanian page, darkened so the type stays readable.
+
 ## 2026-11-04 — Sharper panel, room and dashboard
 The distribution board is a row of modular breakers with a live ammeter. The room is a furnished isometric cutaway. Each dashboard card shows the current that circuit is drawing.
 

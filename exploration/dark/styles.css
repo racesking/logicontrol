@@ -540,7 +540,59 @@ table.contrast .ex-edge { width: 3rem; height: 1.6rem; background: var(--bg-1); 
 
 /* Home: large mark, dense command surface */
 .site-home .brand img { height: 2.6rem; }
-.site-home .hero-command { padding-top: clamp(3.5rem, 2rem + 6vw, 7rem); }
+.site-home .hero-command {
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  align-items: flex-end;
+  padding-top: clamp(4rem, 8vh, 7rem);
+  padding-bottom: clamp(3.5rem, 8vh, 6rem);
+  overflow: hidden;
+}
+.hero-command::before {
+  content: '';
+  position: absolute;
+  inset: -4%;
+  z-index: -2;
+  background: url('photos/pipes.jpg') center 40% / cover no-repeat;
+  transform: scale(1.04);
+  animation: photo-drift 42s ease-in-out infinite alternate;
+}
+.hero-command::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(15,17,19,.94) 0%, rgba(15,17,19,.86) 38%, rgba(15,17,19,.55) 68%, rgba(15,17,19,.38) 100%),
+    linear-gradient(180deg, rgba(15,17,19,.35), transparent 24%, rgba(15,17,19,.55));
+}
+@keyframes photo-drift {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to { transform: scale(1.1) translate3d(-1.5%, -1%, 0); }
+}
+.photo-band { position: relative; isolation: isolate; background-color: #0f1113; background-size: cover; background-position: center; }
+.photo-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+  filter: saturate(0.75) contrast(1.05);
+}
+.photo-band::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(15, 17, 19, 0.78);
+}
+.photo-band .wrap { position: relative; }
+.band-ducts { background-image: url('photos/ducts.jpg'); background-position: center 40%; }
+.band-electrical { background-image: url('photos/electrical.jpg'); background-position: center 30%; }
+.band-cables { background-image: url('photos/servers.jpg'); background-position: center; }
+.photo-credit { color: var(--text-3); font-size: 0.75rem; }
 .hero-mark { height: clamp(4.75rem, 10vw, 7.5rem); width: auto; margin-bottom: 1.75rem; }
 .hero-command h1 { font-size: clamp(3.4rem, 2rem + 6.4vw, 7.25rem); letter-spacing: -0.045em; max-width: 16ch; }
 .hero-command .hero-lead { max-width: 40rem; font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem); }
@@ -629,7 +681,7 @@ input[type='range'].text-input {
   .site-home .site-header .btn--primary { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-mark, .hero-command h1, .hero-command .hero-lead, .hero-command .hero-actions { animation: none; }
+  .hero-mark, .hero-command h1, .hero-command .hero-lead, .hero-command .hero-actions, .hero-command::before { animation: none; }
   .meter span, .sys .lamp { transition: none; box-shadow: none; }
   .mcb-toggle, .blind, .room-floor, .lamp, .occupant, .pir { transition: none; }
   .room.is-ac .ac-unit span, .room.is-hrv .hrv-unit i { animation: none; }

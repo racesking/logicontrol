@@ -18,7 +18,7 @@
 
   <div class="preview-bar">
     <div class="wrap">
-      <span>Previzualizare neindexată · Logo B · demonstrație simulată</span>
+      <span>Previzualizare neindexată · Logo B</span>
       <nav aria-label="Previzualizare">
         <a href="identity.html">Fișa de identitate</a>
       </nav>
@@ -32,7 +32,6 @@
       </a>
       <nav class="primary-nav" id="primary-nav" aria-label="Principală">
         <ul class="nav-list">
-          <li><a href="#tablou">Tablou</a></li>
           <li><a href="#meserie">Meserie</a></li>
           <li><a href="#lucrari">Lucrări</a></li>
           <li><a href="#platforme">Platforme</a></li>
@@ -50,112 +49,15 @@
         <img class="hero-mark" src="logo/option-b.svg" alt="" width="520" height="128">
         <p class="hero-eyebrow label"><span>Pentru persoane</span><span>Casă și clădire</span><span>România</span></p>
         <h1 id="hero-title">Procese reale,<br>sub comanda ta.</h1>
-        <p class="hero-lead">Îți punem în mână ce se întâmplă de fapt. Construim BMS și automatizări — hardware și software — ca să poți urmări și conduce sisteme adevărate. Mai jos, o cameră, tabloul ei electric și comenzile: te poți juca cu ele.</p>
+        <p class="hero-lead">Îți punem în mână ce se întâmplă de fapt. Construim BMS și automatizări — hardware și software — ca să poți urmări și conduce sisteme adevărate: încălzire, ventilație, tablouri, senzori.</p>
         <div class="hero-actions">
-          <a class="btn btn--primary" href="#tablou">Intră în tablou <span class="arrow" aria-hidden="true">↓</span></a>
-          <a class="btn btn--secondary" href="#discutie">Spune ce vrei să conduci <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--primary" href="#discutie">Spune ce vrei să conduci <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--secondary" href="#meserie">Meseria <span class="arrow" aria-hidden="true">↓</span></a>
         </div>
       </div>
     </section>
 
-    <section class="section section-board" id="tablou" aria-labelledby="board-title">
-      <div class="wrap">
-        <div class="section-head board-head">
-          <p class="section-index label">01 · Demonstrație simulată</p>
-          <h2 id="board-title">Tabloul, camera și comenzile.</h2>
-          <p class="section-lead">Un tablou electric, camera pe care o alimentează, și tabloul de comandă de lângă ele. Siguranțele taie circuitele. Senzorul de prezență aprinde lumina doar când este pe PIR. Valorile sunt ilustrative.</p>
-        </div>
-
-        <div class="scada" id="scada">
-          <div class="scada-top">
-            <div class="kpi"><span class="label">Cameră</span><strong id="room-temp">20.2</strong><em>°C</em></div>
-            <div class="kpi"><span class="label">Curent</span><strong id="room-amps">8.6</strong><em>A</em></div>
-            <div class="kpi"><span class="label">PIR</span><strong id="pir-state">Mișcare</strong></div>
-            <div class="kpi"><span class="label">Jaluzele</span><strong id="blind-state">35%</strong></div>
-            <button class="btn btn--quiet" type="button" id="demo-reset">Resetează</button>
-          </div>
-
-          <div class="scada-grid">
-            <section class="cab" aria-label="Tablou electric ilustrativ">
-              <div class="cab-face">
-                <div class="cab-plate"><strong>TD-01</strong><span>230 V · 50 Hz</span></div>
-                <div class="cab-rail" role="group" aria-label="Siguranțe">
-                  <button type="button" class="brk is-on" data-breaker="light" aria-pressed="true"><span class="brk-shell"><span class="brk-mark">C10</span><span class="brk-lever"></span></span><span class="brk-name">Q1 Iluminat</span></button>
-                  <button type="button" class="brk is-on" data-breaker="floor" aria-pressed="true"><span class="brk-shell"><span class="brk-mark">C20</span><span class="brk-lever"></span></span><span class="brk-name">Q2 Pardoseală</span></button>
-                  <button type="button" class="brk is-on" data-breaker="hrv" aria-pressed="true"><span class="brk-shell"><span class="brk-mark">C6</span><span class="brk-lever"></span></span><span class="brk-name">Q3 Recuperator</span></button>
-                  <button type="button" class="brk is-on" data-breaker="ac" aria-pressed="true"><span class="brk-shell"><span class="brk-mark">C16</span><span class="brk-lever"></span></span><span class="brk-name">Q4 AC</span></button>
-                  <button type="button" class="brk is-on" data-breaker="blinds" aria-pressed="true"><span class="brk-shell"><span class="brk-mark">C6</span><span class="brk-lever"></span></span><span class="brk-name">Q5 Jaluzele</span></button>
-                </div>
-                <div class="cab-lcd" aria-hidden="true">
-                  <span>I<sub>L1</sub></span>
-                  <b id="meter-mirror">8.8</b>
-                  <em>A</em>
-                  <i id="meter-bar"></i>
-                </div>
-                <p class="cab-note">Siguranța deschisă taie circuitul. Comanda de pe tabloul din dreapta rămâne, dar echipamentul nu mai are curent.</p>
-              </div>
-            </section>
-            <div class="iso-wrap">
-<svg id="room" class="room-svg" viewBox="31 202 495 435" role="img" aria-label="Cameră izometrică, simulată">
-<defs>
-  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d7f1ff"/><stop offset="1" stop-color="#7eb6d0"/></linearGradient>
-  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.2"/></filter>
-</defs><g class="slab"><polygon class="f-south" points="68.1,473 327.9,623 327.9,615 68.1,465"/><polygon class="f-east" points="509.8,518 327.9,623 327.9,615 509.8,510"/><polygon class="f-top" points="250,360 509.8,510 327.9,615 68.1,465"/></g><polygon class="tile b" points="250,367.6 288.1,389.6 250,411.6 211.9,389.6"/><polygon class="tile a" points="208.4,391.6 246.5,413.6 208.4,435.6 170.3,413.6"/><polygon class="tile b" points="166.9,415.6 205,437.6 166.9,459.6 128.8,437.6"/><polygon class="tile a" points="125.3,439.6 163.4,461.6 125.3,483.6 87.2,461.6"/><polygon class="tile a" points="291.6,391.6 329.7,413.6 291.6,435.6 253.5,413.6"/><polygon class="tile b" points="250,415.6 288.1,437.6 250,459.6 211.9,437.6"/><polygon class="tile a" points="208.4,439.6 246.5,461.6 208.4,483.6 170.3,461.6"/><polygon class="tile b" points="166.9,463.6 205,485.6 166.9,507.6 128.8,485.6"/><polygon class="tile b" points="333.1,415.6 371.2,437.6 333.1,459.6 295,437.6"/><polygon class="tile a" points="291.6,439.6 329.7,461.6 291.6,483.6 253.5,461.6"/><polygon class="tile b" points="250,463.6 288.1,485.6 250,507.6 211.9,485.6"/><polygon class="tile a" points="208.4,487.6 246.5,509.6 208.4,531.6 170.3,509.6"/><polygon class="tile a" points="374.7,439.6 412.8,461.6 374.7,483.6 336.6,461.6"/><polygon class="tile b" points="333.1,463.6 371.2,485.6 333.1,507.6 295,485.6"/><polygon class="tile a" points="291.6,487.6 329.7,509.6 291.6,531.6 253.5,509.6"/><polygon class="tile b" points="250,511.6 288.1,533.6 250,555.6 211.9,533.6"/><polygon class="tile b" points="416.3,463.6 454.4,485.6 416.3,507.6 378.2,485.6"/><polygon class="tile a" points="374.7,487.6 412.8,509.6 374.7,531.6 336.6,509.6"/><polygon class="tile b" points="333.1,511.6 371.2,533.6 333.1,555.6 295,533.6"/><polygon class="tile a" points="291.6,535.6 329.7,557.6 291.6,579.6 253.5,557.6"/><polygon class="tile a" points="457.8,487.6 496,509.6 457.8,531.6 419.7,509.6"/><polygon class="tile b" points="416.3,511.6 454.4,533.6 416.3,555.6 378.2,533.6"/><polygon class="tile a" points="374.7,535.6 412.8,557.6 374.7,579.6 336.6,557.6"/><polygon class="tile b" points="333.1,559.6 371.2,581.6 333.1,603.6 295,581.6"/><polygon class="heat-veil" points="250,359 509.8,509 327.9,614 68.1,464"/><g class="wallB"><polygon class="f-south" points="59.5,470 319.3,620 319.3,488 59.5,338"/><polygon class="f-east" points="327.9,615 319.3,620 319.3,488 327.9,483"/><polygon class="f-top" points="68.1,333 327.9,483 319.3,488 59.5,338"/></g><g class="wallL"><polygon class="f-south" points="59.5,460 68.1,465 68.1,333 59.5,328"/><polygon class="f-east" points="250,360 68.1,465 68.1,333 250,228"/><polygon class="f-top" points="241.3,223 250,228 68.1,333 59.5,328"/></g><polygon class="window" points="98.4,437.5 212.8,503.5 212.8,437.5 98.4,371.5"/><polygon class="slat" data-slat="0" points="101,378 208.4,440 208.4,436.8 101,374.8"/><polygon class="slat" data-slat="1" points="101,383.2 208.4,445.2 208.4,442 101,380"/><polygon class="slat" data-slat="2" points="101,388.4 208.4,450.4 208.4,447.2 101,385.2"/><polygon class="slat" data-slat="3" points="101,393.6 208.4,455.6 208.4,452.4 101,390.4"/><polygon class="slat" data-slat="4" points="101,398.8 208.4,460.8 208.4,457.6 101,395.6"/><polygon class="slat" data-slat="5" points="101,404 208.4,466 208.4,462.8 101,400.8"/><polygon class="slat" data-slat="6" points="101,409.2 208.4,471.2 208.4,468 101,406"/><polygon class="slat" data-slat="7" points="101,414.4 208.4,476.4 208.4,473.2 101,411.2"/><polygon class="slat" data-slat="8" points="101,419.6 208.4,481.6 208.4,478.4 101,416.4"/><polygon class="slat" data-slat="9" points="101,424.8 208.4,486.8 208.4,483.6 101,421.6"/><polygon class="slat" data-slat="10" points="101,430 208.4,492 208.4,488.8 101,426.8"/><polygon class="slat" data-slat="11" points="101,435.2 208.4,497.2 208.4,494 101,432"/><g class="acbox"><polygon class="f-south" points="227.5,503 307.2,549 307.2,521 227.5,475"/><polygon class="f-east" points="326.2,538 307.2,549 307.2,521 326.2,510"/><polygon class="f-top" points="246.5,464 326.2,510 307.2,521 227.5,475"/></g><polygon class="ac-vent" points="254.3,487.5 318.4,524.5 318.4,518.5 254.3,481.5"/><g class="hrvbox"><polygon class="f-south" points="185.9,357 217.1,375 217.1,313 185.9,295"/><polygon class="f-east" points="263.9,348 217.1,375 217.1,313 263.9,286"/><polygon class="f-top" points="232.7,268 263.9,286 217.1,313 185.9,295"/></g><polygon class="duct duct-hot" points="227.5,285 215.4,292 215.4,280 227.5,273"/><polygon class="duct duct-cold" points="203.2,299 191.1,306 191.1,294 203.2,287"/><circle class="hrv-fan" cx="224.9" cy="322.5" r="9"/><g class="sofa"><polygon class="f-south" points="237.9,437 333.1,492 333.1,464 237.9,409"/><polygon class="f-east" points="374.7,468 333.1,492 333.1,464 374.7,440"/><polygon class="f-top" points="279.4,385 374.7,440 333.1,464 237.9,409"/></g><g class="sofa-back"><polygon class="f-south" points="267.3,392 362.6,447 362.6,421 267.3,366"/><polygon class="f-east" points="374.7,440 362.6,447 362.6,421 374.7,414"/><polygon class="f-top" points="279.4,359 374.7,414 362.6,421 267.3,366"/></g><g class="fixture"><polygon class="f-south" points="241.3,325 272.5,343 272.5,337 241.3,319"/><polygon class="f-east" points="288.1,334 272.5,343 272.5,337 288.1,328"/><polygon class="f-top" points="256.9,310 288.1,328 272.5,337 241.3,319"/></g><g class="fixture"><polygon class="f-south" points="331.4,385 362.6,403 362.6,397 331.4,379"/><polygon class="f-east" points="378.2,394 362.6,403 362.6,397 378.2,388"/><polygon class="f-top" points="347,370 378.2,388 362.6,397 331.4,379"/></g><ellipse class="lamp" cx="264.7" cy="323.5" rx="22" ry="8" filter="url(#glow)"/><ellipse class="lamp" cx="354.8" cy="383.5" rx="22" ry="8" filter="url(#glow)"/><circle class="pir" cx="359.1" cy="321" r="6"/><g class="occupant" transform="translate(310.6 525)"><ellipse cx="0" cy="2" rx="14" ry="5" class="shadow"/><circle cx="0" cy="-46" r="8"/><path d="M-9 -36 h18 l4 20 h-8 l2 22 h-8 l-4 -22 h-8 z"/></g>
-</svg>
-            </div>
-            <section class="dash" aria-label="Comenzi în timp real">
-              <article class="dash-card dash-light">
-                <header><h3>Lumină</h3><span id="light-mode">PIR</span></header>
-                <p class="dash-read"><b id="light-amps">1.6</b><em>A</em></p>
-                <div class="dash-actions">
-                  <button type="button" id="light-auto" aria-pressed="true">Automat PIR</button>
-                  <button type="button" id="light-on">Pornit</button>
-                  <button type="button" id="light-off">Oprit</button>
-                </div>
-              </article>
-              <article class="dash-card dash-floor">
-                <header><h3>Pardoseală</h3><span id="floor-mode">Încălzește</span></header>
-                <p class="dash-read"><b id="floor-amps">6.2</b><em>A</em><span class="dash-set" id="floor-set">22.0°</span></p>
-                <div class="dash-actions">
-                  <button type="button" id="floor-enable" aria-pressed="true">Activ</button>
-                  <button type="button" id="floor-down" aria-label="Scade consigna pardoselii">−</button>
-                  <button type="button" id="floor-up" aria-label="Crește consigna pardoselii">+</button>
-                </div>
-              </article>
-              <article class="dash-card dash-hrv">
-                <header><h3>Recuperator</h3><span id="hrv-mode">Pornește</span></header>
-                <p class="dash-read"><b id="hrv-amps">0.8</b><em>A</em></p>
-                <button type="button" id="hrv-toggle" aria-pressed="true">Pornit / oprit</button>
-              </article>
-              <article class="dash-card dash-ac">
-                <header><h3>AC</h3><span id="ac-mode">Oprit</span></header>
-                <p class="dash-read"><b id="ac-amps">0.0</b><em>A</em><span class="dash-set" id="ac-set">24.0°</span></p>
-                <div class="dash-actions">
-                  <button type="button" id="ac-toggle" aria-pressed="false">Pornit / oprit</button>
-                  <button type="button" id="ac-down" aria-label="Scade consigna AC">−</button>
-                  <button type="button" id="ac-up" aria-label="Crește consigna AC">+</button>
-                </div>
-              </article>
-              <article class="dash-card dash-blind">
-                <header><h3>Jaluzele</h3><span>Poziție</span></header>
-                <div class="dash-actions">
-                  <button type="button" id="blinds-open">Deschide</button>
-                  <button type="button" id="blinds-close">Închide</button>
-                </div>
-              </article>
-              <article class="dash-card dash-pir">
-                <header><h3>PIR</h3><span>Prezență</span></header>
-                <button type="button" id="presence" aria-pressed="true">Cineva este în cameră</button>
-              </article>
-              <div class="board-foot">
-                <p class="log-empty" id="out-log-empty">Nicio comandă încă. Camera pornește ocupată, cu lumina pe PIR și pardoseala în urmă.</p>
-                <ol class="log" id="out-log"></ol>
-              </div>
-            </section>
-          </div>
-
-    <section class="section" id="meserie" aria-labelledby="meserie-title">
+    <section class="section photo-band band-ducts" id="meserie" aria-labelledby="meserie-title">
       <div class="wrap">
         <div class="section-head">
           <p class="section-index label">02 · Meserie</p>
@@ -181,7 +83,7 @@
       </div>
     </section>
 
-    <section class="section" id="lucrari" aria-labelledby="lucrari-title">
+    <section class="section photo-band band-electrical" id="lucrari" aria-labelledby="lucrari-title">
       <div class="wrap">
         <div class="section-head">
           <p class="section-index label">03 · Lucrări</p>
@@ -203,7 +105,7 @@
       </div>
     </section>
 
-    <section class="section" id="platforme" aria-labelledby="platforme-title">
+    <section class="section photo-band band-cables" id="platforme" aria-labelledby="platforme-title">
       <div class="wrap platform-block">
         <div>
           <p class="section-index label">04 · Platforme</p>
@@ -277,10 +179,10 @@
         <span>Logicontrol · BMS și automatizări · România</span>
       </div>
       <a href="identity.html">Fișa de identitate</a>
+      <span class="photo-credit">Fotografii: Immo Wegmann, Dean Brierley, Unsplash.</span>
     </div>
   </footer>
 
-  <script src="demo-core.js"></script>
   <script src="site.js"></script>
 </body>
 </html>
