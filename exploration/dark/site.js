@@ -46,17 +46,26 @@
       roomEl.classList.toggle('is-ac', v.ac);
       roomEl.classList.toggle('is-occupied', v.presence);
       var cover = (100 - v.blinds) / 100;
-      var topL = [47, 239], topR = [163, 306], botL = [47, 315], botR = [163, 382];
-      function mix(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]; }
-      var cL = mix(topL, botL, cover);
-      var cR = mix(topR, botR, cover);
-      $('#blind').setAttribute('points', [topL, topR, cR, cL].map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '));
+      var slats = $$('.slat', roomEl);
+      var shown = Math.round(cover * slats.length);
+      slats.forEach(function (el, i) { el.style.opacity = i < shown ? '1' : '0'; });
 
       $('#room-temp').textContent = n1(reduced ? v.room : shownRoom);
       var ampsText = n1(reduced ? v.amps : shownAmps);
       $('#room-amps').textContent = ampsText;
       var meter = $('#meter-mirror');
       if (meter) meter.textContent = ampsText;
+      var bar = $('#meter-bar');
+      if (bar) bar.style.setProperty('--meter', Math.min(100, (parseFloat(ampsText) / 14) * 100) + '%');
+      function load(n) { return n.toFixed(1); }
+      var lightEl = $('#light-amps');
+      if (lightEl) lightEl.textContent = load(v.lights ? 1.6 : 0);
+      var floorEl = $('#floor-amps');
+      if (floorEl) floorEl.textContent = load(v.floor ? 6.2 : 0);
+      var hrvEl = $('#hrv-amps');
+      if (hrvEl) hrvEl.textContent = load(v.hrv ? 0.8 : 0);
+      var acEl = $('#ac-amps');
+      if (acEl) acEl.textContent = load(v.ac ? 4.4 : 0);
       $('#pir-state').textContent = v.presence ? 'Mișcare' : 'Liniște';
       $('#blind-state').textContent = Math.round(v.blinds) + '%';
       $('#floor-set').textContent = n1(v.floorSet) + '°';
