@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-04 — Material 3 tokens
+The preview uses a dark Material 3 scheme seeded from the amber mark: color roles, Roboto, the type scale, fully rounded buttons, 12px cards and outlined fields. Photographs and the page structure stay.
+
 ## 2026-11-04 — Page rhythm
 The Romanian page now runs as a sequence of photographs, three practices, a four-step path, and two empty job rows. A job card appears only when a real project can be named.
 
