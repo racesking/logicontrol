@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-04 — Room, panel, dashboard
+The playable preview is now an isometric room fed by a rendered distribution board: lights, underfloor heating, heat recovery, AC, blinds, a PIR and a live current. Commands and breakers are separate.
+
 ## 2026-11-04 — Control dashboard
 Owner rejected the clean-air page. The Romanian preview is a larger, denser control surface: heating, ventilation and a pump on one simulated board, with Siemens and Schneider named once and not as a partnership.
 

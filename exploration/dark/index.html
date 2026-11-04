@@ -50,7 +50,7 @@
         <img class="hero-mark" src="logo/option-b.svg" alt="" width="520" height="128">
         <p class="hero-eyebrow label"><span>Pentru persoane</span><span>Casă și clădire</span><span>România</span></p>
         <h1 id="hero-title">Procese reale,<br>sub comanda ta.</h1>
-        <p class="hero-lead">Îți punem în mână ce se întâmplă de fapt. Construim BMS și automatizări — hardware și software — ca să poți urmări și conduce sisteme adevărate: încălzire, ventilație, o pompă, orice proces care trebuie măsurat.</p>
+        <p class="hero-lead">Îți punem în mână ce se întâmplă de fapt. Construim BMS și automatizări — hardware și software — ca să poți urmări și conduce sisteme adevărate. Mai jos, o cameră, tabloul ei electric și comenzile: te poți juca cu ele.</p>
         <div class="hero-actions">
           <a class="btn btn--primary" href="#tablou">Intră în tablou <span class="arrow" aria-hidden="true">↓</span></a>
           <a class="btn btn--secondary" href="#discutie">Spune ce vrei să conduci <span class="arrow" aria-hidden="true">→</span></a>
@@ -61,87 +61,108 @@
     <section class="section section-board" id="tablou" aria-labelledby="board-title">
       <div class="wrap">
         <div class="section-head board-head">
-          <p class="section-index label">01 · Tablou de comandă</p>
-          <h2 id="board-title">Trei procese. O singură mână pe ele.</h2>
-          <p class="section-lead">Demonstrație simulată, nu instalația ta. Valorile se mișcă după reguli fixe: comanda pleacă imediat, măsura ajunge din urmă. Poți schimba consigna, trece pe manual sau lăsa automatul să calculeze.</p>
+          <p class="section-index label">01 · Demonstrație simulată</p>
+          <h2 id="board-title">Tabloul, camera și comenzile.</h2>
+          <p class="section-lead">Un tablou electric, camera pe care o alimentează, și tabloul de comandă de lângă ele. Siguranțele taie circuitele. Senzorul de prezență aprinde lumina doar când este pe PIR. Valorile sunt ilustrative.</p>
         </div>
 
-        <div class="panel board" id="board" data-selected="heat">
-          <div class="panel-head">
-            <div class="title-group">
-              <span class="panel-title">Instalație ilustrativă · casă</span>
-              <span class="chip chip--advisory"><span class="dot" aria-hidden="true"></span>Simulare</span>
-            </div>
-            <button class="btn btn--quiet" type="button" id="demo-reset">Resetează tabloul</button>
+        <div class="scada" id="scada">
+          <div class="scada-top">
+            <div class="kpi"><span class="label">Cameră</span><strong id="room-temp">20.2</strong><em>°C</em></div>
+            <div class="kpi"><span class="label">Curent</span><strong id="room-amps">8.6</strong><em>A</em></div>
+            <div class="kpi"><span class="label">PIR</span><strong id="pir-state">Mișcare</strong></div>
+            <div class="kpi"><span class="label">Jaluzele</span><strong id="blind-state">35%</strong></div>
+            <button class="btn btn--quiet" type="button" id="demo-reset">Resetează</button>
           </div>
 
-          <div class="board-grid">
-            <div class="board-rail" role="group" aria-label="Procese">
-              <button type="button" class="sys" data-system="heat" aria-pressed="true">
-                <span class="lamp" aria-hidden="true"></span>
-                <span class="sys-name">Încălzire</span>
-                <span class="sys-live mono" data-live>19.2 °C</span>
-              </button>
-              <button type="button" class="sys" data-system="air" aria-pressed="false">
-                <span class="lamp" aria-hidden="true"></span>
-                <span class="sys-name">Ventilație</span>
-                <span class="sys-live mono" data-live>45 %</span>
-              </button>
-              <button type="button" class="sys" data-system="pump" aria-pressed="false">
-                <span class="lamp" aria-hidden="true"></span>
-                <span class="sys-name">Pompă</span>
-                <span class="sys-live mono" data-live>1.6 bar</span>
-              </button>
-              <svg class="process" viewBox="0 0 280 92" aria-hidden="true">
-                <path class="process-line" d="M18 46 H262" />
-                <circle class="node node-heat" cx="46" cy="46" r="8"/>
-                <circle class="node node-air" cx="140" cy="46" r="8"/>
-                <circle class="node node-pump" cx="234" cy="46" r="8"/>
+          <div class="scada-grid">
+            <section class="enclosure" aria-label="Tablou electric ilustrativ">
+              <div class="enclosure-bar">
+                <span>TD-01</span>
+                <span>230 V · simulare</span>
+              </div>
+              <div class="din" role="group" aria-label="Siguranțe">
+                <button type="button" class="mcb is-on" data-breaker="light" aria-pressed="true"><span class="mcb-toggle" aria-hidden="true"></span><span>Q1</span><span>Iluminat</span></button>
+                <button type="button" class="mcb is-on" data-breaker="floor" aria-pressed="true"><span class="mcb-toggle" aria-hidden="true"></span><span>Q2</span><span>Pardoseală</span></button>
+                <button type="button" class="mcb is-on" data-breaker="hrv" aria-pressed="true"><span class="mcb-toggle" aria-hidden="true"></span><span>Q3</span><span>Recuperator</span></button>
+                <button type="button" class="mcb is-on" data-breaker="ac" aria-pressed="true"><span class="mcb-toggle" aria-hidden="true"></span><span>Q4</span><span>AC</span></button>
+                <button type="button" class="mcb is-on" data-breaker="blinds" aria-pressed="true"><span class="mcb-toggle" aria-hidden="true"></span><span>Q5</span><span>Jaluzele</span></button>
+              </div>
+              <div class="meter-window">
+                <span class="label">Curent total</span>
+                <p><b id="meter-mirror">8.6</b> A</p>
+              </div>
+              <p class="field-hint">Apasă o siguranță. Circuitul deschis stinge echipamentul, chiar dacă comanda rămâne pornită.</p>
+            </section>
+
+            <div class="iso-wrap">
+              <svg id="room" class="room-svg" viewBox="0 80 450 420" role="img" aria-label="Cameră izometrică, simulată">
+                <polygon class="floor" points="180,250 405,380 241,475 15,345"/>
+                <polygon class="wall-left" points="180,250 15,345 15,195 180,100"/>
+                <polygon class="wall-back" points="15,345 241,475 241,325 15,195"/>
+                <polygon class="sofa" points="206,305 275,345 232,352 163,312"/>
+                <polygon class="window" points="47,315 163,382 163,306 47,239"/>
+                <polygon id="blind" class="blind" points="47,239 163,306 163,306 47,239"/>
+                <polygon class="ac-unit" points="177,388 230,419 230,387 177,356"/>
+                <polygon class="hrv" points="149,224 93,256 93,174 149,142"/>
+                <circle class="hrv-fan" cx="121" cy="198" r="12"/>
+                <ellipse class="lamp" cx="197" cy="170" rx="28" ry="10"/>
+                <ellipse class="lamp" cx="267" cy="230" rx="28" ry="10"/>
+                <circle class="pir" cx="258" cy="185" r="7"/>
+                <g class="occupant" transform="translate(215 380)">
+                  <circle cx="0" cy="-28" r="7"/>
+                  <path d="M-8 -18 L8 -18 L12 8 L4 8 L0 -4 L-4 8 L-12 8 Z"/>
+                </g>
               </svg>
             </div>
 
-            <div class="board-stage">
-              <p class="label" id="board-kicker">Măsură confirmată</p>
-              <p class="stage-value"><span id="board-measured">19.2</span> <span id="board-unit">°C</span></p>
-              <h3 id="board-name">Încălzire</h3>
-              <dl class="stage-meta">
-                <div><dt>Consignă</dt><dd id="board-setpoint">21.5 °C</dd></div>
-                <div><dt>Comandă</dt><dd id="board-output">40%</dd></div>
-                <div><dt>Mod</dt><dd id="board-mode">Automat</dd></div>
-              </dl>
-              <div class="meter" aria-hidden="true"><span id="board-bar"></span></div>
-              <p class="explain" id="board-line"></p>
-              <p class="alarm" id="board-alarm" role="status">Procesul nu a ajuns încă la consignă. Alarma rămâne până o marchezi ca văzută. Nu înseamnă că s-a reparat.</p>
-            </div>
-
-            <form class="board-controls" aria-label="Comenzi pentru procesul selectat" onsubmit="return false">
-              <fieldset>
-                <legend>Consignă</legend>
-                <div class="nudge">
-                  <button type="button" class="btn btn--quiet" data-nudge="-1" aria-label="Scade consigna">−</button>
-                  <button type="button" class="btn btn--quiet" data-nudge="1" aria-label="Crește consigna">+</button>
+            <section class="dash" aria-label="Comenzi în timp real">
+              <article class="dash-card">
+                <header><h3>Lumină</h3><span id="light-mode">PIR</span></header>
+                <div class="dash-actions">
+                  <button type="button" id="light-auto" aria-pressed="true">Automat PIR</button>
+                  <button type="button" id="light-on">Pornit</button>
+                  <button type="button" id="light-off">Oprit</button>
                 </div>
-              </fieldset>
-              <fieldset>
-                <legend>Mod</legend>
-                <div class="segmented">
-                  <button type="button" data-mode="auto" aria-pressed="true">Automat</button>
-                  <button type="button" data-mode="manual" aria-pressed="false">Manual</button>
+              </article>
+              <article class="dash-card">
+                <header><h3>Pardoseală</h3><span id="floor-mode">Încălzește</span></header>
+                <div class="dash-actions">
+                  <button type="button" id="floor-enable" aria-pressed="true">Circuit termic</button>
+                  <button type="button" id="floor-down" aria-label="Scade consigna pardoselii">−</button>
+                  <strong id="floor-set">22.0°</strong>
+                  <button type="button" id="floor-up" aria-label="Crește consigna pardoselii">+</button>
                 </div>
-              </fieldset>
-              <div>
-                <label class="field-label" for="manual-output">Ieșire manuală <span class="opt">0–100%</span></label>
-                <input class="text-input" id="manual-output" type="range" min="0" max="100" step="5" value="40">
+              </article>
+              <article class="dash-card">
+                <header><h3>Recuperator</h3><span id="hrv-mode">Pornește</span></header>
+                <button type="button" id="hrv-toggle" aria-pressed="true">Pornit / oprit</button>
+              </article>
+              <article class="dash-card">
+                <header><h3>AC</h3><span id="ac-mode">Oprit</span></header>
+                <div class="dash-actions">
+                  <button type="button" id="ac-toggle" aria-pressed="false">Pornit / oprit</button>
+                  <button type="button" id="ac-down" aria-label="Scade consigna AC">−</button>
+                  <strong id="ac-set">24.0°</strong>
+                  <button type="button" id="ac-up" aria-label="Crește consigna AC">+</button>
+                </div>
+              </article>
+              <article class="dash-card">
+                <header><h3>Jaluzele</h3><span>Poziție</span></header>
+                <div class="dash-actions">
+                  <button type="button" id="blinds-open">Deschide</button>
+                  <button type="button" id="blinds-close">Închide</button>
+                </div>
+              </article>
+              <article class="dash-card">
+                <header><h3>PIR</h3><span>Prezență</span></header>
+                <button type="button" id="presence" aria-pressed="true">Cineva este în cameră</button>
+              </article>
+              <div class="board-foot">
+                <p class="log-empty" id="out-log-empty">Nicio comandă încă. Camera pornește ocupată, cu lumina pe PIR și pardoseala în urmă.</p>
+                <ol class="log" id="out-log"></ol>
               </div>
-              <button type="button" class="btn btn--secondary" id="ack">Marchează alarma ca văzută</button>
-              <p class="field-hint">În automat, ieșirea se recalculează singură. În manual, cursorul este comanda.</p>
-            </form>
-          </div>
-
-          <div class="board-foot">
-            <p class="label" id="out-step">Pas 0</p>
-            <p class="log-empty" id="out-log-empty">Nicio comandă încă. Tabloul pornește cu încălzirea în urmă, ca să vezi cum recuperează.</p>
-            <ol class="log" id="out-log"></ol>
+            </section>
           </div>
         </div>
       </div>

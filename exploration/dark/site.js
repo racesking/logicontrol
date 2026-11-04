@@ -1,19 +1,10 @@
-/* Control surface: menu, plant dashboard, prototype enquiry. Romanian only. */
+/* Room, distribution board and dashboard. Romanian only. */
 (function () {
   'use strict';
 
   var $ = function (sel, el) { return (el || document).querySelector(sel); };
   var $$ = function (sel, el) { return Array.prototype.slice.call((el || document).querySelectorAll(sel)); };
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var NAMES = { heat: 'Încălzire', air: 'Ventilație', pump: 'Pompă' };
-  var UNITS = { heat: '°C', air: '%', pump: 'bar' };
-  var KIND = {
-    setpoint: 'consignă',
-    mode: 'mod',
-    manual: 'comandă manuală',
-    ack: 'alarmă văzută'
-  };
 
   var menuBtn = $('.menu-toggle');
   var nav = $('#primary-nav');
@@ -36,119 +27,130 @@
     });
   }
 
-  var Plant = window.LCPlant;
-  var board = $('#board');
-  if (Plant && board) {
-    var state = Plant.initialState();
-    var shown = { heat: 19.2, air: 45, pump: 1.6 };
+  var Room = window.LCRoom;
+  var root = $('#scada');
+  if (Room && root) {
+    var state = Room.initialState();
+    var shownRoom = state.room;
+    var shownAmps = 0;
     var timer = null;
 
-    function format(id, n) {
-      if (id === 'air') return String(Math.round(n));
-      return (Math.round(n * 10) / 10).toFixed(1);
-    }
+    function n1(n) { return (Math.round(n * 10) / 10).toFixed(1); }
 
-    function line(id, view) {
-      if (view.alarm === 'lag' && id === 'heat') return 'Încălzirea e în urmă. Vana urcă, camera încă nu.';
-      if (view.alarm === 'low') return 'Presiunea stă sub consignă. Pompa nu ține ritmul.';
-      if (view.alarm === 'lag') return 'Ventilația nu a ajuns la debitul cerut.';
-      if (view.mode === 'manual') return 'Mod manual: comanda ta are prioritate. Procesul execută, nu ghicește.';
-      return 'Mod automat: comanda se calculează din diferența dintre măsură și consignă.';
-    }
+    function render() {
+      var v = Room.view(state);
+      var roomEl = $('#room');
+      roomEl.classList.toggle('is-lit', v.lights);
+      roomEl.classList.toggle('is-heat', v.floor);
+      roomEl.classList.toggle('is-hrv', v.hrv);
+      roomEl.classList.toggle('is-ac', v.ac);
+      roomEl.classList.toggle('is-occupied', v.presence);
+      var cover = (100 - v.blinds) / 100;
+      var topL = [47, 239], topR = [163, 306], botL = [47, 315], botR = [163, 382];
+      function mix(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]; }
+      var cL = mix(topL, botL, cover);
+      var cR = mix(topR, botR, cover);
+      $('#blind').setAttribute('points', [topL, topR, cR, cL].map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '));
 
-    function render(snap) {
-      var selected = state.selected;
-      $$('[data-system]', board).forEach(function (btn) {
-        var id = btn.getAttribute('data-system');
-        var on = id === selected;
+      $('#room-temp').textContent = n1(reduced ? v.room : shownRoom);
+      var ampsText = n1(reduced ? v.amps : shownAmps);
+      $('#room-amps').textContent = ampsText;
+      var meter = $('#meter-mirror');
+      if (meter) meter.textContent = ampsText;
+      $('#pir-state').textContent = v.presence ? 'Mișcare' : 'Liniște';
+      $('#blind-state').textContent = Math.round(v.blinds) + '%';
+      $('#floor-set').textContent = n1(v.floorSet) + '°';
+      $('#ac-set').textContent = n1(v.acSet) + '°';
+      $('#light-mode').textContent = v.lightAuto ? 'PIR' : (v.lightCmd ? 'Manual pornit' : 'Manual oprit');
+      $('#floor-mode').textContent = !v.breakers.floor ? 'Circuit deschis' : (v.floor ? 'Încălzește' : (v.floorEnabled ? 'În consignă' : 'Oprit'));
+      $('#hrv-mode').textContent = !v.breakers.hrv ? 'Circuit deschis' : (v.hrv ? 'Pornește' : 'Oprit');
+      $('#ac-mode').textContent = !v.breakers.ac ? 'Circuit deschis' : (v.ac ? 'Răcește' : (v.acCmd ? 'În consignă' : 'Oprit'));
+
+      $$('[data-breaker]', root).forEach(function (btn) {
+        var id = btn.getAttribute('data-breaker');
+        var on = v.breakers[id];
         btn.setAttribute('aria-pressed', String(on));
-        var view = Plant.view(state, id);
-        var value = btn.querySelector('[data-live]');
-        if (value) value.textContent = format(id, snap ? view.measured : shown[id]) + ' ' + UNITS[id];
-        var lamp = btn.querySelector('.lamp');
-        if (lamp) lamp.classList.toggle('is-alarm', Boolean(view.alarm));
+        btn.classList.toggle('is-on', on);
       });
-
-      var view = Plant.view(state, selected);
-      $('#board-name').textContent = NAMES[selected];
-      $('#board-measured').textContent = format(selected, snap ? view.measured : shown[selected]);
-      $('#board-unit').textContent = UNITS[selected];
-      $('#board-setpoint').textContent = format(selected, view.setpoint) + ' ' + UNITS[selected];
-      $('#board-output').textContent = view.output + '%';
-      $('#board-bar').style.width = view.output + '%';
-      $('#board-mode').textContent = view.mode === 'manual' ? 'Manual' : 'Automat';
-      $('#board-line').textContent = line(selected, view);
-      var alarm = $('#board-alarm');
-      alarm.hidden = !view.alarm;
-      $$('[data-mode]', board).forEach(function (b) {
-        b.setAttribute('aria-pressed', String(b.getAttribute('data-mode') === view.mode));
-      });
-      var manual = $('#manual-output');
-      if (document.activeElement !== manual) manual.value = String(view.mode === 'manual' ? view.manual : view.output);
-      $('#out-step').textContent = 'Pas ' + state.step;
+      var presenceBtn = $('#presence');
+      presenceBtn.setAttribute('aria-pressed', String(v.presence));
+      presenceBtn.textContent = v.presence ? 'Cineva este în cameră' : 'Camera este goală';
+      $('#light-auto').setAttribute('aria-pressed', String(v.lightAuto));
+      $('#floor-enable').setAttribute('aria-pressed', String(v.floorEnabled));
+      $('#hrv-toggle').setAttribute('aria-pressed', String(v.hrvCmd));
+      $('#ac-toggle').setAttribute('aria-pressed', String(v.acCmd));
 
       var log = $('#out-log');
-      var empty = $('#out-log-empty');
       log.innerHTML = '';
       if (!state.log.length) {
-        empty.hidden = false;
+        $('#out-log-empty').hidden = false;
       } else {
-        empty.hidden = true;
+        $('#out-log-empty').hidden = true;
         state.log.forEach(function (entry) {
           var li = document.createElement('li');
-          li.textContent = 'Pas ' + entry.step + ' · ' + NAMES[entry.id] + ' · ' + KIND[entry.kind] + ' ' + entry.value;
+          li.textContent = 'Pas ' + entry.step + ' · ' + entry.text;
           log.appendChild(li);
         });
       }
-      board.setAttribute('data-selected', selected);
     }
 
     function paint() {
-      var moving = false;
-      ['heat', 'air', 'pump'].forEach(function (id) {
-        var target = Plant.view(state, id).measured;
-        var cur = shown[id];
-        var next = reduced ? target : cur + (target - cur) * 0.35;
-        if (Math.abs(target - next) < 0.05) next = target;
-        else moving = true;
-        shown[id] = next;
-      });
-      render(false);
-      if (moving) requestAnimationFrame(paint);
+      var v = Room.view(state);
+      var move = false;
+      if (reduced) {
+        shownRoom = v.room;
+        shownAmps = v.amps;
+      } else {
+        shownRoom = shownRoom + (v.room - shownRoom) * 0.28;
+        shownAmps = shownAmps + (v.amps - shownAmps) * 0.28;
+        if (Math.abs(v.room - shownRoom) < 0.05) shownRoom = v.room;
+        else move = true;
+        if (Math.abs(v.amps - shownAmps) < 0.05) shownAmps = v.amps;
+        else move = true;
+      }
+      render();
+      if (move) requestAnimationFrame(paint);
     }
 
     function apply(action) {
-      var next = Plant.transition(state, action);
+      var next = Room.transition(state, action);
       if (next === state) return;
       state = next;
       paint();
     }
 
-    board.addEventListener('click', function (event) {
-      var sys = event.target.closest('[data-system]');
-      if (sys) apply({ type: 'SELECT', id: sys.getAttribute('data-system') });
-      var nudge = event.target.closest('[data-nudge]');
-      if (nudge) apply({ type: 'NUDGE', dir: Number(nudge.getAttribute('data-nudge')) });
-      var mode = event.target.closest('[data-mode]');
-      if (mode) apply({ type: 'MODE', mode: mode.getAttribute('data-mode') });
-      if (event.target.closest('#ack')) apply({ type: 'ACK' });
+    root.addEventListener('click', function (event) {
+      var breaker = event.target.closest('[data-breaker]');
+      if (breaker) apply({ type: 'BREAKER', id: breaker.getAttribute('data-breaker') });
+      if (event.target.closest('#presence')) apply({ type: 'PRESENCE' });
+      if (event.target.closest('#light-auto')) apply({ type: 'LIGHT_MODE', auto: !state.light.auto });
+      if (event.target.closest('#light-on')) apply({ type: 'LIGHT', on: true });
+      if (event.target.closest('#light-off')) apply({ type: 'LIGHT', on: false });
+      if (event.target.closest('#floor-enable')) apply({ type: 'FLOOR' });
+      if (event.target.closest('#floor-up')) apply({ type: 'FLOOR_SET', dir: 1 });
+      if (event.target.closest('#floor-down')) apply({ type: 'FLOOR_SET', dir: -1 });
+      if (event.target.closest('#hrv-toggle')) apply({ type: 'HRV' });
+      if (event.target.closest('#ac-toggle')) apply({ type: 'AC' });
+      if (event.target.closest('#ac-up')) apply({ type: 'AC_SET', dir: 1 });
+      if (event.target.closest('#ac-down')) apply({ type: 'AC_SET', dir: -1 });
+      if (event.target.closest('#blinds-open')) apply({ type: 'BLINDS', target: 100 });
+      if (event.target.closest('#blinds-close')) apply({ type: 'BLINDS', target: 0 });
       if (event.target.closest('#demo-reset')) {
-        state = Plant.initialState();
-        shown = { heat: 19.2, air: 45, pump: 1.6 };
-        render(true);
+        state = Room.initialState();
+        shownRoom = state.room;
+        shownAmps = Room.view(state).amps;
+        render();
       }
     });
 
-    $('#manual-output').addEventListener('change', function (event) {
-      apply({ type: 'MANUAL', value: event.target.value });
-    });
-
-    function loop() {
-      state = Plant.transition(state, { type: 'TICK' });
-      paint();
+    if (!reduced) {
+      timer = window.setInterval(function () {
+        state = Room.transition(state, { type: 'TICK' });
+        paint();
+      }, 900);
     }
-    if (!reduced) timer = window.setInterval(loop, 1400);
-    render(true);
+    shownAmps = Room.view(state).amps;
+    render();
     window.addEventListener('pagehide', function () { if (timer) clearInterval(timer); });
   }
 
@@ -156,14 +158,10 @@
   if (!form) return;
   var result = $('#form-result');
 
-  function clearErrors() {
-    $$('[aria-invalid]', form).forEach(function (el) { el.removeAttribute('aria-invalid'); });
-    $$('.field-error', form).forEach(function (el) { el.textContent = ''; });
-  }
-
   form.addEventListener('submit', function (event) {
     event.preventDefault();
-    clearErrors();
+    $$('[aria-invalid]', form).forEach(function (el) { el.removeAttribute('aria-invalid'); });
+    $$('.field-error', form).forEach(function (el) { el.textContent = ''; });
     var first = null;
     function mark(input, message) {
       var box = input.closest('fieldset') || input.parentElement;
