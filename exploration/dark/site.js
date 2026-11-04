@@ -185,6 +185,83 @@
     showStep(0);
   }
 
+  var frag = $('#fragment');
+  if (frag) {
+    var measured = 19.4;
+    var shown = 19.4;
+    var setpoint = 21;
+    var sent = false;
+    var confirmed = false;
+    var status = $('#frag-status');
+    var confirm = $('#frag-confirm');
+    var measureEl = $('#frag-measured');
+    var setEl = $('#frag-set');
+    function draw() {
+      measureEl.textContent = shown.toFixed(1);
+      setEl.textContent = setpoint.toFixed(1) + '°';
+    }
+    function approach() {
+      if (!sent) return;
+      var gap = setpoint - shown;
+      if (Math.abs(gap) < 0.05) {
+        shown = setpoint;
+        confirmed = true;
+        status.textContent = 'Măsura a ajuns la consignă.';
+        confirm.textContent = 'Echipamentul a confirmat.';
+        draw();
+        return;
+      }
+      shown = reduced ? setpoint : shown + gap * 0.18;
+      status.textContent = 'Comanda a plecat.';
+      confirm.textContent = 'Echipamentul încă nu a confirmat.';
+      draw();
+      if (!reduced) requestAnimationFrame(approach);
+      else approach();
+    }
+    function command(next) {
+      setpoint = Math.max(16, Math.min(26, Math.round(next * 2) / 2));
+      sent = true;
+      confirmed = false;
+      status.textContent = 'Comanda a plecat.';
+      confirm.textContent = 'Echipamentul încă nu a confirmat.';
+      draw();
+      approach();
+    }
+    $('#frag-up').addEventListener('click', function () { command(setpoint + 0.5); });
+    $('#frag-down').addEventListener('click', function () { command(setpoint - 0.5); });
+    draw();
+  }
+
+  var starts = document.querySelector('.starts');
+  if (starts) {
+    var startValue = $('#start-value');
+    starts.addEventListener('click', function (event) {
+      var button = event.target.closest('[data-start]');
+      if (!button) return;
+      var key = button.getAttribute('data-start');
+      $$('[data-start]', starts).forEach(function (item) {
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+      startValue.value = key;
+      ['house', 'building', 'paper'].forEach(function (name) {
+        var box = document.getElementById('start-' + name);
+        var on = name === key;
+        box.hidden = !on;
+        if (!on) $$('input', box).forEach(function (input) { input.checked = false; });
+      });
+      var place = { house: 'home', building: 'building', paper: 'home' }[key];
+      var placeInput = form && $('input[name="place"][value="' + place + '"]', form);
+      if (placeInput) placeInput.checked = true;
+      $('#start-error').textContent = '';
+    });
+  }
+
+  var hashNav = document.querySelector('[data-nav="' + (location.hash || '').replace('#', '') + '"]');
+  if (hashNav && location.pathname.indexOf('practici') !== -1) {
+    $$('[data-nav]').forEach(function (link) { link.removeAttribute('aria-current'); });
+    hashNav.setAttribute('aria-current', 'page');
+  }
+
   var form = $('#enquiry');
   if (!form) return;
   var result = $('#form-result');
@@ -201,6 +278,11 @@
       var err = $('.field-error', box);
       if (err) err.textContent = message;
       if (!first) first = input;
+    }
+    var startBtn = $('.starts [aria-pressed="true"]');
+    if ($('#start-value') && !$('#start-value').value) {
+      $('#start-error').textContent = 'Alege de unde pornești.';
+      if (!first) first = $('.starts button');
     }
     var problem = $('input[name="problem"]:checked', form);
     var place = $('input[name="place"]:checked', form);
@@ -231,6 +313,6 @@
     strong.textContent = 'Nu s-a trimis nimic';
     result.appendChild(strong);
     result.appendChild(document.createTextNode(' Formularul este un prototip. Pe ecran rămâne doar rezumatul: ' +
-      [label(problem), label(place), person.value.trim(), contact.value.trim()].join(' · ')));
+      [startBtn ? startBtn.textContent.trim() : '', label(problem), label(place), person.value.trim(), contact.value.trim()].filter(Boolean).join(' · ')));
   });
 })();

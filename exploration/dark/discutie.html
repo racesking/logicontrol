@@ -27,9 +27,7 @@
         <img src="logo/option-b.svg" alt="Logicontrol" width="260" height="64">
       </a>
       <nav class="primary-nav" id="primary-nav" aria-label="Principală">
-        <ul class="nav-list">
-          <li><a href="practici.html">Practici</a></li><li><a href="drum.html">Drum</a></li><li><a href="lucrari.html">Lucrări</a></li><li><a href="discutie.html" aria-current="page">Discuție</a></li>
-        </ul>
+        <ul class="nav-list"><li><a href="practici.html#bms" data-nav="bms">BMS</a></li><li><a href="practici.html#hvac" data-nav="hvac">HVAC</a></li><li><a href="practici.html#software" data-nav="software">Software</a></li><li><a href="lucrari.html" data-nav="lucrari.html">Lucrări</a></li><li><a href="discutie.html" data-nav="discutie.html" aria-current="page">Discuție</a></li></ul>
       </nav>
       <a class="btn btn--primary header-cta" href="discutie.html">Deschide o discuție</a>
       <button class="btn btn--quiet menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Meniu</button>
@@ -41,13 +39,46 @@
       <div class="wrap">
         <p class="section-index label">04 · Discuție</p>
         <h1>Ce vrei să vezi și să comanzi?</h1>
-        <p class="section-lead">Spune procesul și locul. Răspunsul pornește de la instalația care există. Formularul nu trimite încă.</p>
+        <p class="section-lead">Alege de unde pornești. Întrebarea de după se schimbă. Formularul nu trimite încă.</p>
       </div>
     </section>
     <section class="section" style="padding-top:0">
       <div class="wrap" style="max-width:42rem">
         <form class="panel form-panel" id="enquiry" method="post" action="#" novalidate>
           <div class="form-body">
+            <div class="starts" role="group" aria-label="De unde pornești">
+              <button type="button" data-start="house">O casă cu echipament deja montat</button>
+              <button type="button" data-start="building">O clădire care are nevoie de BMS</button>
+              <button type="button" data-start="paper">Un proiect încă pe hârtie</button>
+            </div>
+            <p class="field-error" id="start-error"></p>
+            <input type="hidden" name="start" id="start-value">
+            <fieldset id="start-house" hidden>
+              <legend>Ce este deja montat</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="already" value="boiler"><span>Centrală</span></label>
+                <label class="option"><input type="radio" name="already" value="vent"><span>Ventilație</span></label>
+                <label class="option"><input type="radio" name="already" value="both"><span>Ambele</span></label>
+                <label class="option"><input type="radio" name="already" value="unsure"><span>Nu sunt sigur</span></label>
+              </div>
+            </fieldset>
+            <fieldset id="start-building" hidden>
+              <legend>Ce trebuie legat</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="link" value="heat"><span>Încălzire</span></label>
+                <label class="option"><input type="radio" name="link" value="air"><span>Ventilație</span></label>
+                <label class="option"><input type="radio" name="link" value="panels"><span>Tablouri</span></label>
+                <label class="option"><input type="radio" name="link" value="all"><span>Întregul BMS</span></label>
+              </div>
+            </fieldset>
+            <fieldset id="start-paper" hidden>
+              <legend>Ce se desenează acum</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="draw" value="heat"><span>Încălzirea</span></label>
+                <label class="option"><input type="radio" name="draw" value="air"><span>Ventilația</span></label>
+                <label class="option"><input type="radio" name="draw" value="whole"><span>Întregul sistem</span></label>
+              </div>
+            </fieldset>
             <fieldset>
               <legend>Procesul</legend>
               <div class="options">

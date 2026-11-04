@@ -1,3 +1,6 @@
+## 2026-11-04 — A moving fragment and three ways in
+The home screen carries one simulated circuit: a command leaves, then the measurement confirms. The menu is named BMS, HVAC, Software, Lucrări, Discuție. The discussion page starts from a house, a building, or a project still on paper, and the next question changes.
+
 ## 2026-11-04 — A site, not one page
 Material 3 is reverted. The dark Control type and color return. Home, practices, the four-step path, jobs and the enquiry are separate pages. Moving between them uses a view transition. On the path, the chosen step stays lit.
 

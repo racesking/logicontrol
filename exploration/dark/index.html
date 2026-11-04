@@ -27,9 +27,7 @@
         <img src="logo/option-b.svg" alt="Logicontrol" width="260" height="64">
       </a>
       <nav class="primary-nav" id="primary-nav" aria-label="Principală">
-        <ul class="nav-list">
-          <li><a href="practici.html">Practici</a></li><li><a href="drum.html">Drum</a></li><li><a href="lucrari.html">Lucrări</a></li><li><a href="discutie.html">Discuție</a></li>
-        </ul>
+        <ul class="nav-list"><li><a href="practici.html#bms" data-nav="bms">BMS</a></li><li><a href="practici.html#hvac" data-nav="hvac">HVAC</a></li><li><a href="practici.html#software" data-nav="software">Software</a></li><li><a href="lucrari.html" data-nav="lucrari.html">Lucrări</a></li><li><a href="discutie.html" data-nav="discutie.html">Discuție</a></li></ul>
       </nav>
       <a class="btn btn--primary header-cta" href="discutie.html">Deschide o discuție</a>
       <button class="btn btn--quiet menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Meniu</button>
@@ -38,15 +36,30 @@
   <main id="continut" tabindex="-1">
 
     <section class="hero hero-command" aria-labelledby="hero-title">
-      <div class="wrap">
-        <img class="hero-mark" src="logo/option-b.svg" alt="" width="520" height="128">
-        <p class="hero-eyebrow label"><span>Pentru persoane</span><span>Casă și clădire</span><span>România</span></p>
-        <h1 id="hero-title">Procese reale,<br>sub comanda ta.</h1>
-        <p class="hero-lead">Îți punem în mână ce se întâmplă de fapt. Construim BMS și automatizări — hardware și software — ca să poți urmări și conduce sisteme adevărate.</p>
-        <div class="hero-actions">
-          <a class="btn btn--primary" href="discutie.html">Spune ce vrei să conduci <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn--secondary" href="practici.html">Practicile <span class="arrow" aria-hidden="true">↓</span></a>
+      <div class="wrap hero-split">
+        <div>
+          <img class="hero-mark" src="logo/option-b.svg" alt="" width="520" height="128">
+          <p class="hero-eyebrow label"><span>Pentru persoane</span><span>Casă și clădire</span><span>România</span></p>
+          <h1 id="hero-title">Procese reale,<br>sub comanda ta.</h1>
+          <p class="hero-lead">Îți punem în mână ce se întâmplă de fapt. Construim BMS și automatizări — hardware și software — ca să poți urmări și conduce sisteme adevărate. Poți începe cu una. Celelalte se alătură când sistemul are nevoie.</p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="discutie.html">Spune ce vrei să conduci <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--secondary" href="practici.html">Practicile <span class="arrow" aria-hidden="true">↓</span></a>
+          </div>
         </div>
+        <aside class="fragment" id="fragment" aria-label="Fragment de comandă, simulat">
+          <p class="label">Simulare · un singur circuit</p>
+          <p class="fragment-kicker">Măsură confirmată</p>
+          <p class="fragment-value"><span id="frag-measured">19.4</span><span>°C</span></p>
+          <p class="fragment-status" id="frag-status">Așteaptă o comandă.</p>
+          <div class="fragment-row">
+            <span>Consignă</span>
+            <button type="button" id="frag-down" aria-label="Scade consigna">−</button>
+            <strong id="frag-set">21.0°</strong>
+            <button type="button" id="frag-up" aria-label="Crește consigna">+</button>
+          </div>
+          <p class="fragment-confirm" id="frag-confirm">Comanda nu a plecat încă.</p>
+        </aside>
       </div>
     </section>
     <a class="gate band-ducts" href="practici.html">
