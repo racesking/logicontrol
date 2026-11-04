@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-04 — Page rhythm
+The Romanian page now runs as a sequence of photographs, three practices, a four-step path, and two empty job rows. A job card appears only when a real project can be named.
+
 ## 2026-11-04 — Engineering photographs
 The demo is off the page for now. Real plant, duct and wiring photographs sit behind the Romanian page, darkened so the type stays readable.
 
