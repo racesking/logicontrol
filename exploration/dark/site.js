@@ -1,58 +1,18 @@
-/* Control page: menu, air-and-heat demonstration, prototype enquiry. */
+/* Control surface: menu, plant dashboard, prototype enquiry. Romanian only. */
 (function () {
   'use strict';
 
   var $ = function (sel, el) { return (el || document).querySelector(sel); };
   var $$ = function (sel, el) { return Array.prototype.slice.call((el || document).querySelectorAll(sel)); };
-  var lang = document.documentElement.lang === 'en' ? 'en' : 'ro';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var COPY = {
-    ro: {
-      airFresh: 'Mai curat',
-      airHeavy: 'Greu',
-      heatWords: { 100: 'Rămâne în cameră', 40: 'Multă iese pe geam', 75: 'O mare parte rămâne' },
-      explain: {
-        closed: 'Geamul a stat închis. Aerul rămâne greu. Căldura stă în cameră, dar nu a intrat aer proaspăt, iar umiditatea rămâne înăuntru.',
-        tilted: 'Geamul întredeschis aduce aer mai curat și scoate căldura afară. Dimineața, centrala sau pompa încălzește aer rece.',
-        recovery: 'Intră aer mai curat, iar o mare parte din căldură rămâne în casă. Este un principiu ilustrativ, nu o economie promisă și nu un echipament dimensionat.'
-      },
-      ways: {
-        closed: 'Geam închis toată noaptea',
-        tilted: 'Geam întredeschis',
-        recovery: 'Aer proaspăt cu recuperare de căldură'
-      },
-      emptyLog: 'Nicio alegere încă. Porniți de la geamul închis.',
-      step: function (n) { return 'Pas ' + n; },
-      notSent: 'Nu s-a trimis nimic',
-      notSentBody: 'Acesta este un formular prototip. Mesajul rămâne doar pe acest ecran.',
-      need: 'Alegeți una dintre variante.',
-      needText: 'Completați acest câmp.',
-      incomplete: 'Completați formularul',
-      incompleteBody: 'Alegeți ce nu merge, locul și ce există deja, apoi scrieți numele și emailul sau telefonul.'
-    },
-    en: {
-      airFresh: 'Fresher',
-      airHeavy: 'Heavy',
-      heatWords: { 100: 'Stays in the room', 40: 'Much of it leaves', 75: 'Most of it stays' },
-      explain: {
-        closed: 'The window stayed shut. The air stays heavy. The heat remains in the room, but no fresh air came in, and the moisture stays inside.',
-        tilted: 'A tilted window brings fresher air and lets the heat out. In the morning the boiler or heat pump warms cold air.',
-        recovery: 'Fresher air comes in, and most of the heat stays in the house. This illustrates a principle. It is not a promised saving and not a sized product.'
-      },
-      ways: {
-        closed: 'Window shut all night',
-        tilted: 'Window tilted open',
-        recovery: 'Fresh air with heat recovery'
-      },
-      emptyLog: 'No choice yet. Start from the shut window.',
-      step: function (n) { return 'Step ' + n; },
-      notSent: 'Nothing was sent',
-      notSentBody: 'This is a prototype form. The message stays on this screen only.',
-      need: 'Choose one option.',
-      needText: 'Fill in this field.',
-      incomplete: 'Complete the form',
-      incompleteBody: 'Choose what is wrong, the place, and what is already there, then add a name and an email or phone.'
-    }
+  var NAMES = { heat: 'Încălzire', air: 'Ventilație', pump: 'Pompă' };
+  var UNITS = { heat: '°C', air: '%', pump: 'bar' };
+  var KIND = {
+    setpoint: 'consignă',
+    mode: 'mod',
+    manual: 'comandă manuală',
+    ack: 'alarmă văzută'
   };
 
   var menuBtn = $('.menu-toggle');
@@ -76,116 +36,172 @@
     });
   }
 
-  var D = window.LCAir;
-  var demo = $('#demo');
-  if (D && demo) {
-    var state = D.initialState();
-    var t = COPY[lang];
+  var Plant = window.LCPlant;
+  var board = $('#board');
+  if (Plant && board) {
+    var state = Plant.initialState();
+    var shown = { heat: 19.2, air: 45, pump: 1.6 };
+    var timer = null;
 
-    function render() {
-      var f = D.facts(state);
-      $('#air-word').textContent = f.fresh ? t.airFresh : t.airHeavy;
-      $('#co2').textContent = String(f.co2);
-      $('#heat').value = f.heatKept;
-      $('#heat-word').textContent = t.heatWords[f.heatKept];
-      $('#explain').textContent = t.explain[state.way];
-      $('#out-step').textContent = t.step(state.step);
-      $$('input[name="way"]', demo).forEach(function (input) {
-        input.checked = input.value === state.way;
+    function format(id, n) {
+      if (id === 'air') return String(Math.round(n));
+      return (Math.round(n * 10) / 10).toFixed(1);
+    }
+
+    function line(id, view) {
+      if (view.alarm === 'lag' && id === 'heat') return 'Încălzirea e în urmă. Vana urcă, camera încă nu.';
+      if (view.alarm === 'low') return 'Presiunea stă sub consignă. Pompa nu ține ritmul.';
+      if (view.alarm === 'lag') return 'Ventilația nu a ajuns la debitul cerut.';
+      if (view.mode === 'manual') return 'Mod manual: comanda ta are prioritate. Procesul execută, nu ghicește.';
+      return 'Mod automat: comanda se calculează din diferența dintre măsură și consignă.';
+    }
+
+    function render(snap) {
+      var selected = state.selected;
+      $$('[data-system]', board).forEach(function (btn) {
+        var id = btn.getAttribute('data-system');
+        var on = id === selected;
+        btn.setAttribute('aria-pressed', String(on));
+        var view = Plant.view(state, id);
+        var value = btn.querySelector('[data-live]');
+        if (value) value.textContent = format(id, snap ? view.measured : shown[id]) + ' ' + UNITS[id];
+        var lamp = btn.querySelector('.lamp');
+        if (lamp) lamp.classList.toggle('is-alarm', Boolean(view.alarm));
       });
+
+      var view = Plant.view(state, selected);
+      $('#board-name').textContent = NAMES[selected];
+      $('#board-measured').textContent = format(selected, snap ? view.measured : shown[selected]);
+      $('#board-unit').textContent = UNITS[selected];
+      $('#board-setpoint').textContent = format(selected, view.setpoint) + ' ' + UNITS[selected];
+      $('#board-output').textContent = view.output + '%';
+      $('#board-bar').style.width = view.output + '%';
+      $('#board-mode').textContent = view.mode === 'manual' ? 'Manual' : 'Automat';
+      $('#board-line').textContent = line(selected, view);
+      var alarm = $('#board-alarm');
+      alarm.hidden = !view.alarm;
+      $$('[data-mode]', board).forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-mode') === view.mode));
+      });
+      var manual = $('#manual-output');
+      if (document.activeElement !== manual) manual.value = String(view.mode === 'manual' ? view.manual : view.output);
+      $('#out-step').textContent = 'Pas ' + state.step;
+
       var log = $('#out-log');
       var empty = $('#out-log-empty');
       log.innerHTML = '';
       if (!state.log.length) {
         empty.hidden = false;
-        empty.textContent = t.emptyLog;
       } else {
         empty.hidden = true;
         state.log.forEach(function (entry) {
           var li = document.createElement('li');
-          li.textContent = t.step(entry.step) + ' — ' + t.ways[entry.way];
+          li.textContent = 'Pas ' + entry.step + ' · ' + NAMES[entry.id] + ' · ' + KIND[entry.kind] + ' ' + entry.value;
           log.appendChild(li);
         });
       }
+      board.setAttribute('data-selected', selected);
     }
 
-    demo.addEventListener('change', function (event) {
-      if (event.target.name !== 'way') return;
-      state = D.transition(state, { type: 'SET_WAY', way: event.target.value });
-      render();
+    function paint() {
+      var moving = false;
+      ['heat', 'air', 'pump'].forEach(function (id) {
+        var target = Plant.view(state, id).measured;
+        var cur = shown[id];
+        var next = reduced ? target : cur + (target - cur) * 0.35;
+        if (Math.abs(target - next) < 0.05) next = target;
+        else moving = true;
+        shown[id] = next;
+      });
+      render(false);
+      if (moving) requestAnimationFrame(paint);
+    }
+
+    function apply(action) {
+      var next = Plant.transition(state, action);
+      if (next === state) return;
+      state = next;
+      paint();
+    }
+
+    board.addEventListener('click', function (event) {
+      var sys = event.target.closest('[data-system]');
+      if (sys) apply({ type: 'SELECT', id: sys.getAttribute('data-system') });
+      var nudge = event.target.closest('[data-nudge]');
+      if (nudge) apply({ type: 'NUDGE', dir: Number(nudge.getAttribute('data-nudge')) });
+      var mode = event.target.closest('[data-mode]');
+      if (mode) apply({ type: 'MODE', mode: mode.getAttribute('data-mode') });
+      if (event.target.closest('#ack')) apply({ type: 'ACK' });
+      if (event.target.closest('#demo-reset')) {
+        state = Plant.initialState();
+        shown = { heat: 19.2, air: 45, pump: 1.6 };
+        render(true);
+      }
     });
-    $('#demo-reset').addEventListener('click', function () {
-      state = D.transition(state, { type: 'RESET' });
-      render();
+
+    $('#manual-output').addEventListener('change', function (event) {
+      apply({ type: 'MANUAL', value: event.target.value });
     });
-    render();
+
+    function loop() {
+      state = Plant.transition(state, { type: 'TICK' });
+      paint();
+    }
+    if (!reduced) timer = window.setInterval(loop, 1400);
+    render(true);
+    window.addEventListener('pagehide', function () { if (timer) clearInterval(timer); });
   }
 
   var form = $('#enquiry');
   if (!form) return;
   var result = $('#form-result');
-  var copy = COPY[lang];
-
-  function fieldsetOf(input) {
-    return input.closest('fieldset');
-  }
 
   function clearErrors() {
     $$('[aria-invalid]', form).forEach(function (el) { el.removeAttribute('aria-invalid'); });
     $$('.field-error', form).forEach(function (el) { el.textContent = ''; });
   }
 
-  function fail(el, message) {
-    var box = fieldsetOf(el) || el.parentElement;
-    if (box.tagName === 'FIELDSET') box.setAttribute('aria-invalid', 'true');
-    else el.setAttribute('aria-invalid', 'true');
-    var err = $('.field-error', box);
-    if (err) err.textContent = message;
-    return el;
-  }
-
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     clearErrors();
     var first = null;
-    function mark(el, message) {
-      var target = fail(el, message);
-      if (!first) first = target.tagName === 'FIELDSET' ? $('input, textarea', target) || target : target;
+    function mark(input, message) {
+      var box = input.closest('fieldset') || input.parentElement;
+      if (box.tagName === 'FIELDSET') box.setAttribute('aria-invalid', 'true');
+      else input.setAttribute('aria-invalid', 'true');
+      var err = $('.field-error', box);
+      if (err) err.textContent = message;
+      if (!first) first = input;
     }
-
     var problem = $('input[name="problem"]:checked', form);
     var place = $('input[name="place"]:checked', form);
-    var plant = $('input[name="plant"]:checked', form);
     var person = $('#person');
     var contact = $('#contact-detail');
-    if (!problem) mark($('input[name="problem"]', form), copy.need);
-    if (!place) mark($('input[name="place"]', form), copy.need);
-    if (!plant) mark($('input[name="plant"]', form), copy.need);
-    if (!person.value.trim()) mark(person, copy.needText);
-    if (!contact.value.trim()) mark(contact, copy.needText);
+    if (!problem) mark($('input[name="problem"]', form), 'Alege ce vrei să conduci.');
+    if (!place) mark($('input[name="place"]', form), 'Alege locul.');
+    if (!person.value.trim()) mark(person, 'Scrie un nume.');
+    if (!contact.value.trim()) mark(contact, 'Lasă un email sau un telefon.');
     if (first) {
       result.hidden = false;
       result.textContent = '';
-      var incomplete = document.createElement('strong');
-      incomplete.textContent = copy.incomplete;
-      result.appendChild(incomplete);
-      result.appendChild(document.createTextNode(' ' + copy.incompleteBody));
-      var box = first.closest('fieldset') || first.parentElement;
-      box.scrollIntoView({ block: 'center' });
-      if (first.focus) first.focus({ preventScroll: true });
+      var title = document.createElement('strong');
+      title.textContent = 'Mai lipsește ceva';
+      result.appendChild(title);
+      result.appendChild(document.createTextNode(' Spune ce proces vrei să vezi și să comanzi, unde este, și cum te contactăm.'));
+      (first.closest('fieldset') || first.parentElement).scrollIntoView({ block: 'center' });
+      first.focus({ preventScroll: true });
       return;
     }
-
-    var chosen = function (input) {
-      var label = input.closest('label');
-      return label ? label.textContent.replace(/\s+/g, ' ').trim() : input.value;
+    var label = function (input) {
+      var node = input.closest('label');
+      return node ? node.textContent.replace(/\s+/g, ' ').trim() : input.value;
     };
     result.hidden = false;
     result.textContent = '';
-    var title = document.createElement('strong');
-    title.textContent = copy.notSent;
-    result.appendChild(title);
-    result.appendChild(document.createTextNode(' ' + copy.notSentBody + ' ' +
-      [chosen(problem), chosen(place), chosen(plant), person.value.trim(), contact.value.trim()].join(' · ')));
+    var strong = document.createElement('strong');
+    strong.textContent = 'Nu s-a trimis nimic';
+    result.appendChild(strong);
+    result.appendChild(document.createTextNode(' Formularul este un prototip. Pe ecran rămâne doar rezumatul: ' +
+      [label(problem), label(place), person.value.trim(), contact.value.trim()].join(' · ')));
   });
 })();

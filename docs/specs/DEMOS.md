@@ -1,8 +1,16 @@
 # Interactive demo contracts
 Load when implementing models, demos, configurator handoff or their tests.
 
+## Current contract — plant dashboard, 2026-11-04
+Status: the flagship model. The air-and-heat bedroom story from 2026-11-03 is withdrawn. The office lighting dashboard below stays superseded.
+
+Three processes on one simulated house board: heating (°C), ventilation (fan %), pump (bar). `transition` is pure. Actions: `SELECT`, `NUDGE`, `MODE`, `MANUAL`, `ACK`, `TICK`, `RESET`. The same actions always return the same numbers. Command and measured value stay distinct. An alarm means the process has not caught the setpoint; acknowledging it means “seen”, and the condition can remain. The interface says the board is a simulation. No savings figure.
+
+## Withdrawn — air and heat, 2026-11-03
+The bedroom window model below is not the product. Kept only so the rejection stays visible.
+
 ## Current contract — air and heat, 2026-11-03
-Status: the flagship model. The office lighting dashboard, the stuck-valve diagnosis and the systems configurator below are superseded as the product proof. Do not implement them unless a later decision says they serve this outcome.
+Status: withdrawn. The office lighting dashboard, the stuck-valve diagnosis and the systems configurator below are superseded as the product proof. Do not implement them unless a later decision says they serve this outcome.
 
 One deterministic scenario: a bedroom on a winter morning, one person, starting from a window shut all night.
 

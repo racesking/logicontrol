@@ -32,13 +32,23 @@ Source: owner messages the same day. These supersede the rows named in the last 
 | D18 | Do not spend this stage on a CMS. Content stays in the repository until someone other than the owner must publish without a commit. | D07’s CMS-in-scope requirement. |
 | D19 | Tailor language from organic-reach research: household Romanian first, separate Romanian and English URLs, no savings percentage, no health cure, no energy certificate, no funding application. | The BMS-led hero and the “Discută proiectul” label as the only CTA. |
 
-The enquiry still works without finishing the demonstration. Headline and button wording from the research note are hypotheses in use on the preview, not tested winners.
+The enquiry still works without finishing the demonstration. Headline and button wording from the research note were a hypothesis for the air-and-heat page. The owner rejected that page on 2026-11-04.
+
+## Accepted — owner conversation, 2026-11-04
+The clean-air page is dropped. Source: owner replies the same day.
+
+| ID | Choice | Supersedes |
+|---|---|---|
+| D20 | The company lets a person monitor and command real-world data and processes. HVAC automation, BMS, hardware and software. | D17’s clean-air and window story. |
+| D21 | First reader: a private person. Residential and commercial work both appear. | D16 as the only audience frame. |
+| D22 | The homepage should feel wide: any monitored-and-controlled problem, shown as a full control dashboard. | The three-choice air demo. |
+| D23 | Siemens and Schneider are named once, lower on the page, as equipment the firm programs. Not an official partnership. Other brands only when the process needs them. | A logo wall or a partner claim. |
+| D24 | This iteration is Romanian only. Dark Control and Logo B stay, with a larger mark, larger headlines, and a denser, animated interface. | D19 for this preview. English returns in a later iteration. |
 
 ## Proposed — not owner-approved
 - Contractors as a secondary audience.
 - GitHub Pages for prototype use, alternative production hosting subject to terms review.
-- Later pages for air, heat, a project, questions and the conversation, once the single preview page is accepted.
-- A diagnosis or a project brief only if it serves the air-and-energy outcome.
+- English page after this Romanian preview is accepted.
 
 ## Unresolved
 No final domain, trademark clearance, legal company details, contact endpoint or production host has been selected. Logo B is selected inside the dark system; optical kerning by a type designer has not been done.

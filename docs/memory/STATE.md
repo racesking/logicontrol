@@ -3,8 +3,8 @@ Updated: 2026-11-03. Coordinator-owned snapshot; replace obsolete state instead 
 
 ## Verified baseline
 - Repository: racesking/logicontrol (public). main is still the README at 359c787.
-- Owner selected dark Control and Logo B, with homes and automation projects in the lead. The problem is indoor air and heat lost while airing. CMS work is deferred. See DECISIONS D15–D19.
-- Preview: `exploration/dark/index.html` (Romanian) and `exploration/dark/en.html`. Identity sheet remains at `exploration/dark/identity.html`.
+- Owner rejected the clean-air page on 2026-11-04. The preview now shows a private person monitoring and commanding real processes: BMS and HVAC automation, hardware and software. See D20–D24.
+- Preview, Romanian only: `exploration/dark/index.html`. Identity sheet: `exploration/dark/identity.html`.
 - Organic-reach research: `docs/research/organic-reach-2026-11.md`. Current brief: `docs/content/proposition-2026-11.md`.
 
 ## Current stage

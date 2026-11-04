@@ -1,6 +1,9 @@
 # Significant changes
 Newest first. Outcomes only; use git/PRs for full diffs.
 
+## 2026-11-04 — Control dashboard
+Owner rejected the clean-air page. The Romanian preview is a larger, denser control surface: heating, ventilation and a pump on one simulated board, with Siemens and Schneider named once and not as a partnership.
+
 ## 2026-11-03 — Air, heat, and the dark page
 Owner chose dark Control, Logo B, homes and automation projects, and an air-and-energy proposition. CMS deferred. Organic-reach research replaced the BMS hero and the lighting demo with a winter-morning air-and-heat preview in Romanian and English. No savings, health, certificate or funding claims.
 
