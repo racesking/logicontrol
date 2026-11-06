@@ -1,0 +1,6 @@
+# Local Impeccable install: 22 MB including a Windows binary. Reinstall with npx impeccable install.
+.claude/
+
+# Impeccable local session data
+.impeccable/live/
+.impeccable/critique/
