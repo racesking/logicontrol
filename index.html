@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Procese reale, sub comanda ta — Logicontrol</title>
+  <meta name="description" content="Logicontrol construiește BMS și automatizări, hardware și software, ca o persoană să poată urmări și conduce sisteme adevărate.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0F1113">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/geist-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/src/styles/site.css">
+  <link rel="stylesheet" href="/src/styles/dashboard.css">
+</head>
+<body>
+  <a class="skip-link" href="#continut">Sari la conținut</a>
+  <div class="preview-bar">
+    <div class="wrap">
+      <span>Previzualizare neindexată · prototip de design</span>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#s1" aria-label="Logicontrol — începutul paginii">
+        <img src="/logo/option-b.svg" alt="Logicontrol" width="260" height="64">
+      </a>
+      <nav class="primary-nav" id="primary-nav" aria-label="Principală">
+        <ul class="nav-list">
+          <li><a href="#" data-soon>BMS</a></li>
+          <li><a href="#" data-soon>HVAC</a></li>
+          <li><a href="#" data-soon>Software</a></li>
+          <li><a href="#" data-soon>Lucrări</a></li>
+          <li><a href="#" data-soon>Discuție</a></li>
+          <li class="nav-cta"><a class="btn btn--primary" href="#" data-soon>Deschide o discuție</a></li>
+        </ul>
+      </nav>
+      <button class="assistant-toggle" id="assistant-toggle" type="button" aria-label="Asistent" title="Asistent" aria-expanded="false" aria-controls="assistant">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.6c.5 4.9 3.9 8.3 8.9 9-5 .7-8.4 4.1-8.9 9.8-.5-5.7-3.9-9.1-8.9-9.8 5-.7 8.4-4.1 8.9-9z"/><path d="M19.2 2.8c.2 1.5 1 2.3 2.4 2.5-1.4.2-2.2 1-2.4 2.6-.2-1.6-1-2.4-2.4-2.6 1.4-.2 2.2-1 2.4-2.5z"/></svg>
+      </button>
+      <a class="btn btn--primary header-cta" href="#" data-soon>Deschide o discuție</a>
+      <button class="btn btn--quiet menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Meniu</button>
+    </div>
+  </header>
+
+  <aside class="assistant" id="assistant" aria-label="Asistent demonstrativ" hidden>
+    <header>
+      <span class="assistant-orb" aria-hidden="true"></span>
+      <div>
+        <h2>Asistent</h2>
+        <p>Demonstrație: răspunsuri scrise dinainte, fără inteligență artificială încă.</p>
+      </div>
+      <button type="button" id="assistant-close" aria-label="Închide asistentul">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+    <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
+    <div class="assistant-chips" id="assistant-chips"></div>
+    <form class="assistant-form" id="assistant-form">
+      <label class="visually-hidden" for="assistant-input">Mesaj</label>
+      <input id="assistant-input" type="text" autocomplete="off" placeholder="Scrie o întrebare">
+      <button type="submit" aria-label="Trimite">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </aside>
+
+  <nav class="journey" id="journey" aria-label="Capitole">
+    <ol>
+      <li><a href="#s1" data-u="0" data-at="0"><span>Început</span></a></li>
+      <li><a href="#s2" data-u="3.4" data-at="2"><span>Tablou</span></a></li>
+      <li><a href="#s3" data-u="5.2" data-at="4.3"><span>Panou</span></a></li>
+      <li><a href="#s3" data-u="7.1" data-at="5.9"><span>Acasă</span></a></li>
+    </ol>
+  </nav>
+  <button class="next-cue" id="next-cue" type="button" hidden><span></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg></button>
+
+  <div class="hero-backdrop" aria-hidden="true">
+    <div class="hero-photo is-on" data-photo="pipes"></div>
+    <div class="hero-photo" data-photo="ducts"></div>
+    <div class="hero-photo" data-photo="cabinet"></div>
+    <div class="hero-photo" data-photo="servers"></div>
+    <div class="hero-photo" data-photo="electrical"></div>
+  </div>
+  <canvas id="stage" aria-hidden="true"></canvas>
+
+  <main id="continut" tabindex="-1">
+    <section class="act act-hero" id="s1" aria-labelledby="hero-title">
+      <div class="wrap hero-split">
+        <div class="hero-copy">
+          <h1 id="hero-title">Procese reale,<br>sub comanda ta.</h1>
+          <p class="hero-lead">Pe ecran vezi temperatura, dai o comandă, echipamentul răspunde. Facem BMS, HVAC și software pentru casă sau clădire — poți începe cu un circuit.</p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#" data-soon>Deschide o discuție <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--secondary" href="#s2" data-descend>Cum funcționează <span class="arrow" aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <nav class="services" id="services" aria-label="Servicii">
+          <ul>
+            <li><a class="svc is-on" href="#s3" data-photo="pipes" data-view="building">
+              <span class="svc-name">BMS</span>
+              <span class="svc-line">Toată clădirea pe un singur ecran.</span>
+              <svg class="svc-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a></li>
+            <li><a class="svc" href="#s3" data-photo="ducts" data-view="ahu">
+              <span class="svc-name">Automatizare HVAC</span>
+              <span class="svc-line">Încălzire, ventilație și răcire, reglate împreună.</span>
+              <svg class="svc-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a></li>
+            <li><a class="svc" href="#s3" data-photo="cabinet">
+              <span class="svc-name">Tablouri de automatizare</span>
+              <span class="svc-line">Controlere, protecții și cablaj, ordonate și etichetate.</span>
+              <svg class="svc-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a></li>
+            <li><a class="svc" href="#s3" data-photo="servers" data-view="trend">
+              <span class="svc-name">Software și programare</span>
+              <span class="svc-line">Programul din controler și ecranul din fața ta.</span>
+              <svg class="svc-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a></li>
+            <li><a class="svc" href="#s3" data-photo="electrical" data-view="alarms">
+              <span class="svc-name">Depanare și mentenanță</span>
+              <span class="svc-line">Aflăm de ce instalația nu face ce ar trebui.</span>
+              <svg class="svc-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a></li>
+          </ul>
+        </nav>
+      </div>
+      <a class="scroll-cue" href="#s2" data-descend>
+        <span>Derulează</span>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <section class="act act-convergence" id="s2" aria-labelledby="s2-title">
+      <h2 class="visually-hidden" id="s2-title">Firele se adună în tablou</h2>
+      <p class="visually-hidden">Cabluri electrice dezordonate se aliniază pe măsură ce derulezi și intră într-un tablou electric, randat în 3D.</p>
+    </section>
+
+    <section class="act act-control" id="s3" aria-labelledby="s3-title">
+      <div class="control-pin">
+        <div class="bms" id="bms" inert></div>
+        <div class="home-title">
+          <h2>Aceeași comandă, de acasă.</h2>
+          <p>Telefonul trimite, tabloul din camera tehnică execută, iar casa răspunde. Simulare.</p>
+        </div>
+        <div class="home-chips" id="home-chips" inert></div>
+        <div class="device" id="device" inert aria-label="Telefon, simulare"></div>
+        <footer class="site-foot">
+          <div class="wrap">
+            <span>Logicontrol · BMS și automatizări · România</span>
+            <span>Simulare: clădirea și valorile sunt inventate. Fotografii: Immo Wegmann, Dean Brierley, Unsplash.</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

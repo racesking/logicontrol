@@ -1,0 +1,21 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "createdAt": "2026-11-06T18:45:27.328Z",
+        "reason": "Project decision D15 keeps Geist with the Dark Control system; owner asked on 2026-11-06 to keep the old hero's style"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist mono",
+        "createdAt": "2026-11-06T18:45:27.571Z",
+        "reason": "Project decision D15 keeps Geist with the Dark Control system; owner asked on 2026-11-06 to keep the old hero's style"
+      }
+    ]
+  }
+}
