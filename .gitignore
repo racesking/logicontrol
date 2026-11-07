@@ -8,3 +8,5 @@ node_modules/
 dist/
 .impeccable/review/
 .impeccable/hook.cache.json
+tools/checks/*.jpg
+tools/checks/*.png
