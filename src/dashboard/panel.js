@@ -91,17 +91,17 @@ export class Dashboard {
     return `
     <nav class="bms-rail" aria-label="Secțiuni">
       <img src="${import.meta.env.BASE_URL}logo/option-b-symbol.svg" alt="" width="30" height="30">
-      <button type="button" class="is-active" data-view="building" aria-current="page" title="Clădire" aria-label="Clădire">${ICONS.building}</button>
-      <button type="button" data-view="ahu" title="Centrală de tratare a aerului" aria-label="Centrală de tratare a aerului">${ICONS.fan}</button>
-      <button type="button" data-view="trend" title="Tendințe" aria-label="Tendințe">${ICONS.trend}</button>
-      <button type="button" data-view="settings" title="Reglaje" aria-label="Reglaje">${ICONS.sliders}</button>
-      <button type="button" data-view="alarms" title="Alarme" aria-label="Alarme">${ICONS.bell}<i class="bms-badge" id="bell-badge" hidden></i></button>
+      <button type="button" class="is-active" data-view="building" aria-current="page" title="Clădire" aria-label="Clădire">${ICONS.building}<span>Clădire</span></button>
+      <button type="button" data-view="ahu" title="Centrală de tratare a aerului" aria-label="Centrală de tratare a aerului">${ICONS.fan}<span>CTA</span></button>
+      <button type="button" data-view="trend" title="Tendințe" aria-label="Tendințe">${ICONS.trend}<span>Tendințe</span></button>
+      <button type="button" data-view="settings" title="Reglaje" aria-label="Reglaje">${ICONS.sliders}<span>Reglaje</span></button>
+      <button type="button" data-view="alarms" title="Alarme" aria-label="Alarme">${ICONS.bell}<span>Alarme</span><i class="bms-badge" id="bell-badge" hidden></i></button>
     </nav>
     <div class="bms-main">
       <header class="bms-banner">
         <div>
           <h2 id="s3-title">Clădire demonstrativă</h2>
-          <p id="bms-sub">Date simulate · clădirea în 3D, temperaturi și iluminat</p>
+          <p id="bms-sub">Date simulate, timp accelerat · clădirea în 3D</p>
           <span class="bms-pill" id="bms-pill"><i></i><span>Funcționare normală</span></span>
         </div>
         <dl class="bms-weather">
@@ -153,8 +153,8 @@ export class Dashboard {
     this.el('#kpis').hidden = !kpis;
     this.root.querySelector('.bms-main').classList.toggle('no-kpis', !kpis);
     const titles = {
-      building: ['Clădire demonstrativă', 'Date simulate · clădirea în 3D, temperaturi și iluminat'],
-      ahu: ['CTA 1 · Clădire demonstrativă', 'Date simulate · centrala de tratare a aerului'],
+      building: ['Clădire demonstrativă', 'Date simulate, timp accelerat · clădirea în 3D'],
+      ahu: ['CTA 1 · Clădire demonstrativă', 'Date simulate, timp accelerat · centrala de tratare a aerului'],
       trend: ['Tendințe', 'Date simulate · istoric inventat, ultimele valori sunt cele din panou'],
       settings: ['Reglaje', 'Date simulate · programul și limitele clădirii'],
       alarms: ['Alarme', 'Date simulate · alarme active și jurnal'],
@@ -347,6 +347,7 @@ export class Dashboard {
       if (e.room === this.room) this.progress = e.type === 'sent' ? 'sent' : e.type === 'ack' ? 'ack' : 'done';
       // The physical end of the chain: the same command reaches the 3D cabinet.
       if (e.type === 'sent') {
+        this.commanded = true;
         this.cabinet.signal(e.room, e.change);
         this.journal.log(`${e.room.floor.name} · ${e.room.name}: ${this.cabinet.lastCommand.split(' · ').pop()}`);
       }
@@ -370,6 +371,7 @@ export class Dashboard {
     }
     if (e.type === 'sent') {
       this.plantProgress = 'sent';
+      this.commanded = true;
       this.cabinet.signalText('cta', e.text);
       this.journal.log(e.text);
     }
@@ -492,9 +494,10 @@ export class Dashboard {
         <div>
           <button type="button" data-act="down" aria-label="Scade valoarea cerută">−</button>
           <strong>${(r.pendingSet ?? r.set).toFixed(1)}°</strong>
-          <button type="button" data-act="up" aria-label="Crește valoarea cerută">+</button>
+          <button type="button" data-act="up" class="${this.commanded ? '' : 'is-hint'}" aria-label="Crește valoarea cerută">+</button>
         </div>
       </div>
+      ${this.commanded ? '' : `<p class="bms-try">Încearcă: cere ${((r.pendingSet ?? r.set) + 0.5).toFixed(1)}°</p>`}
       <button type="button" class="bms-toggle" data-act="light" aria-pressed="${r.light}"><span>${ICONS.bulb}Iluminat</span><em>${r.light ? 'Aprins' : 'Stins'}</em></button>
       <button type="button" class="bms-toggle" data-act="ac" aria-pressed="${r.ac}"><span>${ICONS.snow}Răcire</span><em>${r.ac ? 'Pornită' : 'Oprită'}</em></button>
       <ol class="bms-chain" aria-label="Starea comenzii">
@@ -506,7 +509,7 @@ export class Dashboard {
   /** Brings the panel into view, wherever the page is. */
   reveal() {
     const stacked = window.matchMedia('(max-width: 979px)').matches;
-    const top = stacked ? this.root.getBoundingClientRect().top + window.scrollY - 72 : 5.2 * window.innerHeight;
+    const top = stacked ? this.root.getBoundingClientRect().top + window.scrollY - 72 : 5.5 * window.innerHeight;
     window.scrollTo({ top, behavior: 'smooth' });
   }
 

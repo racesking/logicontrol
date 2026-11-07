@@ -17,11 +17,11 @@ OWN-WORLD: Graphite #0F1113, warm off-white #ECE6DC, amber #F2B24C, Geist, Logo 
 
 STORY: The visitor understands a person commands real processes, believes it because the chain is physically shown from wire to screen, and finally operates it. Everything simulated is labelled.
 
-FIRST VIEWPORT: The old hero at the same fidelity: pipes photograph full-bleed, headline left at display scale, live command fragment right, actions under the lead. Cables enter from outside the frame behind the text.
+FIRST VIEWPORT: Pipes photograph full-bleed, headline left at display scale, a service index right whose rows change the photograph and lead to each service's live demo, actions under the lead. Owner replaced the earlier command fragment. Cables emerge from under the photograph's lower edge.
 
 FORM: Pinned by owner, position 1. One fixed WebGL stage behind DOM, scroll-scrubbed. Signature: cables snake and sort as you scroll, then a long-lens isometric cabinet rises from below to meet them. Motion is scroll-driven and damped. seed: none (unavailable)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Unresolved
-Owner approved the three.js direction on 2026-11-06, with a concrete wall, self-drawing schematic and perforated tray added. Built: sections 1 to 3, light dashboard, X-ray building, cabinet link. Open: AHU cutaway view, phone tuning, finish review, DESIGN.md.
+Owner approved the three.js direction on 2026-11-06, with a concrete wall, self-drawing schematic and perforated tray added. Built: sections 1 to 3, light dashboard, X-ray building, cabinet link. Sections 4 house and yard built. Open: inner pages, phone tuning, finish review, DESIGN.md.

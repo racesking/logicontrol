@@ -36,6 +36,9 @@ function initPhotos() {
   const photos = [...document.querySelectorAll('.hero-photo')];
   const rows = [...list.querySelectorAll('.svc')];
 
+  // Touch has no hover, so a phone never needs the other four photographs.
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
   // Only the first photograph is needed for first paint.
   window.addEventListener('load', () => {
     photos.slice(1).forEach((p) => {

@@ -5,9 +5,9 @@
 const fold = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
 
 const GREETING = 'Bună. Sunt asistentul demonstrativ. Pot citi valorile din panou și pot da comenzi în simulare.';
-const SUGGESTIONS = ['Câte alarme sunt?', 'Ce temperatură e în clădire?', 'Aprinde lumina în Recepție', 'Arată tendințele'];
+const SUGGESTIONS = ['Câte alarme sunt?', 'Ce temperatură e în clădire?', 'Aprinde lumina în Dormitor', 'Arată casa'];
 
-export function initAssistant(dashboard) {
+export function initAssistant(dashboard, phone = null) {
   const button = document.getElementById('assistant-toggle');
   const panel = document.getElementById('assistant');
   const log = document.getElementById('assistant-log');
@@ -43,11 +43,13 @@ export function initAssistant(dashboard) {
   };
 
   const findRoom = (q) => dashboard?.model.rooms.find((r) => q.includes(fold(r.name)));
+  const findHome = (q) => phone?.model.rooms.find((r) => new RegExp(`\\b${fold(r.name)}\\b`).test(q));
 
   const answer = (raw) => {
     const q = fold(raw);
     const has = (re) => re.test(q);
     const room = findRoom(q);
+    const homeRoom = room ? null : findHome(q);
 
     if (has(/^(salut|buna|hei|hello|neata)/)) return GREETING;
     if (has(/pret|cost|tarif|oferta/)) return 'Nu am prețuri aici. Depind de instalație, așa că se discută după ce vedem ce există deja.';
@@ -59,8 +61,13 @@ export function initAssistant(dashboard) {
     const { model, plant, journal } = dashboard;
 
     if (has(/(aprinde|stinge|inchide|porneste|opreste).*(lumin|iluminat|bec)|(lumin|iluminat|bec).*(aprinde|stinge)/)) {
-      if (!room) return 'În ce cameră? De exemplu: aprinde lumina în Recepție.';
       const on = has(/aprinde|porneste/);
+      if (homeRoom) {
+        if (homeRoom.light === on) return `${homeRoom.name}: lumina este deja ${on ? 'aprinsă' : 'stinsă'}.`;
+        phone.model.toggleLight(homeRoom);
+        return `Am trimis comanda pentru ${homeRoom.name}. Lumina se schimbă după ce echipamentul răspunde.`;
+      }
+      if (!room) return 'În ce cameră? De exemplu: aprinde lumina în Dormitor.';
       if (room.light === on) return `${room.name}: lumina este deja ${on ? 'aprinsă' : 'stinsă'}.`;
       model.command(room, { light: on });
       return `Am trimis comanda pentru ${room.name}. Starea se schimbă după ce echipamentul răspunde.`;
@@ -72,6 +79,21 @@ export function initAssistant(dashboard) {
       return `Am trimis comanda: CTA 1 se ${on ? 'pornește' : 'oprește'}. Clapetele și ventilatoarele urmează secvența lor.`;
     }
 
+    if (phone && has(/noapte|plecat/) && has(/scena|mod|pune|activeaza|plec/)) {
+      const id = has(/noapte/) ? 'noapte' : 'plecat';
+      phone.model.setScene(id);
+      return `Am pornit scena ${id === 'noapte' ? 'Noapte' : 'Plecat'} acasă. Fiecare cameră primește comanda pe cablul ei.`;
+    }
+    if (phone && has(/armeaz/)) {
+      const on = !has(/dezarm/);
+      if (phone.model.armed === on) return `Securitatea este deja ${on ? 'armată' : 'dezarmată'}.`;
+      phone.model.toggleArmed();
+      return `Securitatea casei este acum ${on ? 'armată' : 'dezarmată'}.`;
+    }
+    if (phone && has(/arata|deschide|du-ma|vreau sa vad/) && has(/\bcasa\b|telefon/)) {
+      window.scrollTo({ top: 7.85 * window.innerHeight, behavior: 'smooth' });
+      return 'Te duc la casă. Comenzile sunt pe telefon.';
+    }
     if (has(/tendint|grafic|istoric/)) { showPanel('trend'); return 'Am deschis tendințele în panou.'; }
     if (has(/reglaj|setari|program/)) { showPanel('settings'); return 'Am deschis reglajele în panou.'; }
     if (has(/arata|deschide|du-ma|vreau sa vad/) && has(/alarm/)) { showPanel('alarms'); return 'Am deschis alarmele în panou.'; }
@@ -83,12 +105,13 @@ export function initAssistant(dashboard) {
       const list = journal.alarms.map((a) => `${a.source}: ${a.text}`).join('; ');
       return `${journal.active === 1 ? 'Este o alarmă activă' : `Sunt ${journal.active} alarme active`}. ${list}.`;
     }
+    if (homeRoom) return `${homeRoom.name}, acasă: măsurat ${homeRoom.temp.toFixed(1)}°, cerut ${homeRoom.set.toFixed(1)}°, lumina ${homeRoom.light ? 'aprinsă' : 'stinsă'}.`;
     if (room) return `${room.name}, ${room.floor.name}: măsurat ${room.temp.toFixed(1)}°, cerut ${room.set.toFixed(1)}°, lumina ${room.light ? 'aprinsă' : 'stinsă'}.`;
     if (has(/pompa|caldura|pc1/)) return `PC1 este ${plant.hp.on ? 'pornită' : 'oprită'}, tur ${plant.hp.flowT.toFixed(1)}°.`;
     if (has(/cta|debit|ventil|aer/)) return `CTA 1 este ${plant.ahu.on ? 'pornită' : 'oprită'}: ${Math.round(plant.ahu.flow)} m³/h, aer introdus ${plant.ahu.supplyT.toFixed(1)}°.`;
     if (has(/temperatur|cald|rece|grade/)) return `Media în clădire este ${model.summary().average.toFixed(1)}°, afară ${6.2}°. Întreabă-mă și de o cameră anume.`;
 
-    return 'Nu știu să răspund la asta încă. Încearcă: alarme, temperatura dintr-o cameră, aprinde lumina în Recepție, sau pornește CTA.';
+    return 'Nu știu să răspund la asta încă. Încearcă: alarme, temperatura dintr-o cameră, aprinde lumina în Dormitor, sau scena Noapte.';
   };
 
   const ask = (text) => {

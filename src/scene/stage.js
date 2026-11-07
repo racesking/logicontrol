@@ -40,8 +40,8 @@ export function timeline(u) {
     power: sm(2.75, 3.3, u),
     slide: sm(3.7, 4.7, u),
     dash: sm(4.35, 4.85, u),
-    morph: sm(5.6, 6.4, u),
-    home: sm(5.65, 6.75, u),
+    morph: sm(6.3, 7.1, u),
+    home: sm(6.35, 7.45, u),
   };
 }
 
@@ -204,14 +204,14 @@ export class Stage {
   /** Pixels per CSS pixel at rest. A normal screen gets 2x supersampling, within a budget. */
   stillRatio() {
     const device = window.devicePixelRatio || 1;
-    const budget = Math.sqrt(9.5e6 / (window.innerWidth * window.innerHeight));
+    const budget = Math.sqrt(9.5e6 / Math.max(1, window.innerWidth * window.innerHeight));
     return Math.max(Math.min(device, 2), Math.min(2, budget));
   }
 
   applyRatio(ratio) {
     if (Math.abs(ratio - this.dpr) < 0.01) return;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+    const w = Math.max(1, window.innerWidth);
+    const h = Math.max(1, window.innerHeight);
     this.dpr = ratio;
     this.setEffects(this.sharp || !this.level);
     this.renderer.setPixelRatio(ratio);
@@ -239,7 +239,7 @@ export class Stage {
   }
 
   resize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect = Math.max(1, window.innerWidth) / Math.max(1, window.innerHeight);
     this.camera.updateProjectionMatrix();
     this.dpr = 0;
     this.applyRatio(this.sharp ? this.stillRatio() : this.motionRatio());

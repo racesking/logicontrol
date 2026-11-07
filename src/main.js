@@ -25,10 +25,12 @@ async function start() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const dashboard = new Dashboard(document.getElementById('bms'), stage.cabinet);
   const stacked = window.matchMedia('(max-width: 979px)');
-  initAssistant(dashboard);
   initServices(dashboard);
   const phone = new HomePhone(document.getElementById('device'), document.getElementById('home-chips'), stage, dashboard);
+  initAssistant(dashboard, phone);
   const pin = document.querySelector('.control-pin');
+  const closing = document.getElementById('home-close');
+  const captions = [...document.querySelectorAll('.caption')].map((el) => ({ el, from: Number(el.dataset.from), to: Number(el.dataset.to) }));
   const cue = document.querySelector('.scroll-cue');
   stage.warm();
 
@@ -38,8 +40,8 @@ async function start() {
   const next = document.getElementById('next-cue');
   const CUES = [
     { until: 2.2, text: 'Continuă: tabloul', to: 3.4 },
-    { until: 4.3, text: 'Urmează: panoul de comandă', to: 5.2 },
-    { until: 5.75, text: 'Urmează: acasă, de pe telefon', to: 7.1 },
+    { until: 4.3, text: 'Urmează: panoul de comandă', to: 5.5 },
+    { until: 6.45, text: 'Urmează: acasă, de pe telefon', to: 7.85, panel: true },
   ];
   let lastScroll = -1e4;
   let cueTo = null;
@@ -70,7 +72,10 @@ async function start() {
       });
     }
     const cue = position > 0.4 ? CUES.find((c) => position < c.until) : null;
-    const show = cue && now - lastScroll > 800;
+    // At the panel the visitor is invited to try it first, so the way onward can wait.
+    const wait = cue?.panel && !dashboard.commanded ? 6000 : 800;
+    const show = cue && now - lastScroll > wait;
+    next.classList.toggle('is-side', Boolean(cue?.panel));
     if (show && cueTo !== cue.to) {
       cueTo = cue.to;
       next.querySelector('span').textContent = cue.text;
@@ -112,7 +117,18 @@ async function start() {
     movingFrames = 0;
   };
 
+  const smooth = (a, b, x) => {
+    const n = Math.min(1, Math.max(0, (x - a) / (b - a)));
+    return n * n * (3 - 2 * n);
+  };
+
   const frame = (now) => {
+    // A hidden or collapsed window has no size to draw at.
+    if (!window.innerWidth || !window.innerHeight) {
+      last = now;
+      requestAnimationFrame(frame);
+      return;
+    }
     const elapsed = now - last;
     const dt = Math.min(0.12, elapsed / 1000);
     last = now;
@@ -139,6 +155,13 @@ async function start() {
     pin.style.setProperty('--foot', t.dash.toFixed(3));
     pin.style.setProperty('--home', Math.max(0, (t.home - 0.8) / 0.2).toFixed(3));
     cue.classList.toggle('is-gone', goal > 0.06);
+    for (const c of captions) {
+      const o = smooth(c.from, c.from + 0.16, u) * (1 - smooth(c.to - 0.16, c.to, u));
+      c.el.style.opacity = o.toFixed(3);
+    }
+    const close = flat ? 1 : smooth(7.45, 7.75, u);
+    pin.style.setProperty('--close', close.toFixed(3));
+    closing.classList.toggle('is-on', close > 0.5);
     guide(now, goal);
     watchFrameRate(elapsed);
     window.__frames = (window.__frames || 0) + 1;

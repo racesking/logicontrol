@@ -135,7 +135,7 @@ export class HomePhone {
       <section class="ui-card" aria-label="${r.name}">
         <div class="ui-temp">
           <div><span>Măsurat</span><b>${r.temp.toFixed(1)}°</b></div>
-          <div class="ui-step"><span>Cerut</span><div>
+          <div class="ui-step"><span>Valoare cerută</span><div>
             <button type="button" data-act="down" aria-label="Scade temperatura cerută">−</button>
             <strong>${(r.pending ?? r.set).toFixed(1)}°</strong>
             <button type="button" data-act="up" aria-label="Crește temperatura cerută">+</button>

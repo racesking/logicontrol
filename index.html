@@ -69,9 +69,9 @@
   <nav class="journey" id="journey" aria-label="Capitole">
     <ol>
       <li><a href="#s1" data-u="0" data-at="0"><span>Început</span></a></li>
-      <li><a href="#s2" data-u="3.4" data-at="2"><span>Tablou</span></a></li>
-      <li><a href="#s3" data-u="5.2" data-at="4.3"><span>Panou</span></a></li>
-      <li><a href="#s3" data-u="7.1" data-at="5.9"><span>Acasă</span></a></li>
+      <li><a href="#s2" data-u="3.4" data-at="1.75"><span>Tablou</span></a></li>
+      <li><a href="#s3" data-u="5.5" data-at="4.3"><span>Panou</span></a></li>
+      <li><a href="#s3" data-u="7.85" data-at="6.6"><span>Acasă</span></a></li>
     </ol>
   </nav>
   <button class="next-cue" id="next-cue" type="button" hidden><span></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg></button>
@@ -135,14 +135,21 @@
     <section class="act act-convergence" id="s2" aria-labelledby="s2-title">
       <h2 class="visually-hidden" id="s2-title">Firele se adună în tablou</h2>
       <p class="visually-hidden">Cabluri electrice dezordonate se aliniază pe măsură ce derulezi și intră într-un tablou electric, randat în 3D.</p>
+      <p class="caption" data-from="0.85" data-to="1.55">Fiecare sistem, pe drumul lui.</p>
+      <p class="caption" data-from="1.55" data-to="2.2">Le aducem pe același traseu.</p>
+      <p class="caption" data-from="2.6" data-to="3.95">Totul intră într-un singur tablou.</p>
     </section>
 
     <section class="act act-control" id="s3" aria-labelledby="s3-title">
       <div class="control-pin">
         <div class="bms" id="bms" inert></div>
         <div class="home-title">
-          <h2>Aceeași comandă, de acasă.</h2>
+          <h2>Aceeași comandă, la tine acasă.</h2>
           <p>Telefonul trimite, tabloul din camera tehnică execută, iar casa răspunde. Simulare.</p>
+        </div>
+        <div class="home-close" id="home-close">
+          <p>Un circuit e destul ca să începem.</p>
+          <a class="btn btn--primary" href="#" data-soon>Deschide o discuție <span class="arrow" aria-hidden="true">→</span></a>
         </div>
         <div class="home-chips" id="home-chips" inert></div>
         <div class="device" id="device" inert aria-label="Telefon, simulare"></div>
